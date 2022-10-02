@@ -9,7 +9,7 @@ nav {
 }
 
 .principal {
-  min-height: 89vh;
+  min-height: 80vh;
 }
 
 footer {
@@ -69,7 +69,8 @@ nav .active {
 .past_events,
 .contact,
 .stats {
-  padding-top: 9rem;
+  padding-top: 15vh;
+  padding-bottom: 5vh;
 }
 
 /*/ empieza contact /*/
@@ -90,10 +91,14 @@ nav .active {
   width: 100%;
 }
 .message {
-  height: 30rem;
+  height: 20rem;
 }
 
 /*/ stats /*/
+
+td {
+  padding: 6px;
+}
 
 @media (min-width: 576px) {
 }
