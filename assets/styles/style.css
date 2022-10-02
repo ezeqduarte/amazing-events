@@ -3,3 +3,27 @@
   padding: 0;
   font-family: "Poppins", sans-serif;
 }
+
+nav {
+  min-height: 10vh;
+}
+
+.principal {
+  min-height: 80vh;
+}
+
+footer {
+  min-height: 10vh;
+}
+
+/*/ Arranca index /*/
+
+.active {
+  text-decoration: underline !important;
+  color: rgb(223, 53, 147) !important;
+  transform: scale(1.1);
+}
+
+.principal img {
+  height: 1070px;
+}
