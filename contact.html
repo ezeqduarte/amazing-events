@@ -50,27 +50,45 @@
         </nav>
     </header>
 
-    <div class="principal">
-        <section class="contact">
-            <h2>Contact us</h2>
+    <div class="principal p-1">
+        <section class="contact d-flex flex-wrap justify-content-center">
+            <h2 class="text-center">Contact us</h2>
             <div class="formulario">
-                <form>
-                    <label>Name:
-                        <input type="text">
-                    </label>
-                    <label>Email:
-                        <input type="email">
-                    </label>
-                    <label>Menssage:
-                        <input type="text">
-                    </label>
+                <form class="d-flex flex-column">
+                    <label class="py-2" for="name">Name</label>
+                    <input class="px-3 py-1" type="text" name="name" id="name">
+                    <label class="py-2" for="email">Email</label>
+                    <input class="px-3 py-1" type="email" name="email" id="email">
+                    <label class="py-2" for="message">Message</label>
+                    <input class="message" class="px-3 py-1 message" type="text" name="message" id="message">
+                    <div class="botons_form d-flex justify-content-around pt-4">
+                        <input class="p-3 botons" type="submit" value="Submit">
+                        <input class="p-3 botons" type="reset" value="Clear">
+                    </div>
+
                 </form>
 
             </div>
         </section>
     </div>
 
+    <footer class="d-flex p-3 flex-column flex-lg-row justify-content-around align-items-center">
+        <div class="redes pb-3">
+            <img src="https://img.icons8.com/ios-glyphs/60/000000/facebook-new.png" alt="facebook">
+            <img src="https://img.icons8.com/sf-ultralight-filled/70/000000/whatsapp.png" alt="whatsapp">
+            <img src="https://img.icons8.com/ios-glyphs/60/000000/instagram-new.png" alt="instagram">
+        </div>
+        <div class="text-center p_footer d-flex flex-column justify-content-center align-items-center">
+            <p class="text-uppercase m-0">design and cooding by ezequiel duarte</p>
+            <p class="text-uppercase m-0">MindHub Cohort36 - Full stack MERN </p>
+        </div>
 
+    </footer>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
