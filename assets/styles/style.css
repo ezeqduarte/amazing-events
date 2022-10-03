@@ -4,12 +4,13 @@
   font-family: "Poppins", sans-serif;
 }
 
-nav {
-  min-height: 10vh;
-}
-
-.principal {
-  min-height: 80vh;
+.details,
+.upcoming_events,
+.stats,
+.contact,
+.past_events {
+  min-height: 90vh;
+  padding-top: 8rem;
 }
 
 footer {
@@ -33,8 +34,9 @@ nav .active {
   background-size: cover;
 }
 
-.principal h2 {
+h2 {
   color: rgb(233, 40, 104);
+  width: 100%;
 }
 
 .card_events {
@@ -65,22 +67,11 @@ nav .active {
 
 /*/ empieza upcoming events /*/
 
-.upcoming_events,
-.past_events,
-.contact,
-.stats {
-  padding-top: 15vh;
-  padding-bottom: 5vh;
-}
-
 /*/ empieza contact /*/
 
-.contact h2 {
-  width: 100%;
-}
-
 .formulario {
-  width: 80%;
+  width: 100%;
+  box-shadow: 5px 5px 15px;
 }
 
 .formulario form {
@@ -98,6 +89,37 @@ nav .active {
 
 td {
   padding: 6px;
+}
+
+.tabla {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.575);
+}
+
+/*/ details /*/
+
+.card_details {
+  width: 80%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.555);
+}
+
+h3 {
+  color: rgb(233, 40, 104) !important;
+}
+
+.foto_details {
+  width: 100%;
+}
+
+.foto_details img {
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 5px;
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+}
+
+.details .card-body {
+  width: 100%;
 }
 
 @media (min-width: 576px) {
