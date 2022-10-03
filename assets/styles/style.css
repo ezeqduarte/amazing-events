@@ -53,6 +53,10 @@ h2 {
   width: 100%;
 }
 
+.card {
+  width: 25rem !important;
+}
+
 .card_events {
   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.568);
   margin: 2%;
@@ -63,6 +67,10 @@ h2 {
   height: 250px;
   object-fit: cover;
   object-position: center;
+}
+
+.card-body p {
+  color: black !important;
 }
 
 .pic_event_card h5 {
@@ -163,6 +171,10 @@ h3 {
     background-color: rgb(233, 40, 104) !important;
     color: white !important;
     border: solid 1px rgb(233, 40, 104) !important;
+  }
+
+  .redes img:hover {
+    transform: scale(1.03);
   }
 }
 
