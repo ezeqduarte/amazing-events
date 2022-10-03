@@ -18,6 +18,10 @@ footer {
   background-color: rgba(174, 174, 175, 0.164);
 }
 
+.primario {
+  color: rgb(233, 40, 104) !important;
+}
+
 /*/ Arranca index /*/
 
 nav .active {
@@ -32,6 +36,16 @@ nav .active {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.carousel-item {
+  height: 580px;
+}
+
+.carousel-item img {
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
 }
 
 h2 {
@@ -129,6 +143,27 @@ h3 {
 }
 
 @media (min-width: 992px) {
+  .carousel-item {
+    height: 980px;
+  }
+
+  .card:hover {
+    transition: 200ms;
+    transform: scale(1.02);
+  }
+
+  .btn {
+    background-color: rgba(220, 220, 220, 0.486) !important;
+    color: rgb(233, 40, 104) !important;
+    border: solid 3px rgb(233, 40, 104) !important;
+    width: 100%;
+  }
+
+  .btn:hover {
+    background-color: rgb(233, 40, 104) !important;
+    color: white !important;
+    border: solid 1px rgb(233, 40, 104) !important;
+  }
 }
 
 @media (min-width: 1200px) {
