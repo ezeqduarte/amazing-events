@@ -65,9 +65,9 @@ h2 {
 }
 
 .card_events {
-  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.568);
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.568);
   margin: 2%;
-  border: 1px solid black !important;
+  border: 1px solid rgba(0, 0, 0, 0.493) !important;
 }
 
 .pic_event_card img {
