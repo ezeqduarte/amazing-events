@@ -10,12 +10,6 @@
 .contact,
 .past_events {
   min-height: 80vh;
-  background-color: #ffffff;
-  opacity: 1;
-  background-image: radial-gradient(rgba(233, 40, 104, 1) 2px, transparent 2px),
-    radial-gradient(rgba(233, 40, 104, 1) 2px, #ffffff 2px);
-  background-size: 80px 80px;
-  background-position: 0 0, 40px 40px;
 }
 
 header {
@@ -41,14 +35,6 @@ nav .active {
   text-decoration: underline !important;
   color: rgb(223, 53, 147) !important;
   transform: scale(1.1);
-}
-
-.banner-home {
-  background-image: url(https://wallpapercrafter.com/desktop/241507-the-vaulted-hall-in-the-natural-history-museum-in-.jpg);
-  height: 1000px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 
 .carousel-item {
@@ -109,7 +95,7 @@ h2 {
   background-color: rgba(0, 0, 0, 0.699);
   color: white;
   width: 100%;
-  padding: 5px 0;
+  padding: 25px 0;
 }
 
 .btn {
@@ -123,12 +109,6 @@ h2 {
 .upcoming_events,
 .past_events {
   padding-top: 120px;
-  background-color: #ffffff;
-  opacity: 1;
-  background-image: radial-gradient(rgba(233, 40, 104, 1) 2px, transparent 2px),
-    radial-gradient(rgba(233, 40, 104, 1) 2px, #ffffff 2px);
-  background-size: 80px 80px;
-  background-position: 0 0, 40px 40px;
 }
 
 /*/ empieza contact /*/

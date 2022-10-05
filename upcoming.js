@@ -1,11 +1,16 @@
 let fechaactual = data.currentDate;
 let events = data.events;
 
-let container = document.getElementById("contenido_home");
-for (i = 0; i < events.length; i++) {
+let container = document.getElementById("cont-cards-up");
+
+for (let i = 0; i < events.length; i++) {
   let cartas = document.createElement("div");
   cartas.className = "card card_events p-0";
-  cartas.innerHTML += `
+
+  console.log(fechaactual);
+
+  if (events[i].data < fechaactual) {
+    cartas.innerHTML += `
 
   <div class="pic_event_card d-flex align-items-center justify-content-center">
                         <img src="${events[i].image}" alt="museo">
@@ -31,6 +36,6 @@ for (i = 0; i < events.length; i++) {
                         </a>                         
   
   `;
-
-  container.appendChild(cartas);
+    container.appendChild(cartas);
+  }
 }
