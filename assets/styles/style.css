@@ -10,6 +10,12 @@
 .contact,
 .past_events {
   min-height: 80vh;
+  background-color: #ffffff;
+  opacity: 1;
+  background-image: radial-gradient(rgba(233, 40, 104, 1) 2px, transparent 2px),
+    radial-gradient(rgba(233, 40, 104, 1) 2px, #ffffff 2px);
+  background-size: 80px 80px;
+  background-position: 0 0, 40px 40px;
 }
 
 header {
@@ -56,8 +62,10 @@ nav .active {
 }
 
 h2 {
-  color: rgb(233, 40, 104);
+  color: rgb(233, 40, 120);
   width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid;
 }
 
 .card {
@@ -115,6 +123,12 @@ h2 {
 .upcoming_events,
 .past_events {
   padding-top: 120px;
+  background-color: #ffffff;
+  opacity: 1;
+  background-image: radial-gradient(rgba(233, 40, 104, 1) 2px, transparent 2px),
+    radial-gradient(rgba(233, 40, 104, 1) 2px, #ffffff 2px);
+  background-size: 80px 80px;
+  background-position: 0 0, 40px 40px;
 }
 
 /*/ empieza contact /*/
