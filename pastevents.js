@@ -19,11 +19,12 @@ for (let i = 0; i < events.length; i++) {
                                   class="datos-datos-cards">${events[i].date}</span></p>
                           <p class="card-text"><span class="datos-cards">Category:</span> <span
                                   class="datos-datos-cards">${events[i].category}</span></p>                                      
-                           <p class="card-text"><span class="datos-cards">Assistance:</span><span class="datos-datos-cards">
-                          ${events[i].assistance} of ${events[i].capacity} expected </span></p>
-                          <a href="details.html" class="btn btn-primary">More information
-  
-                          </a>                         
+                           <p class="card-text"><span class="datos-cards">Price:</span><span class="datos-datos-cards"> $
+                          ${events[i].price}</span></p>
+                          <div class="d-flex justify-content-end">
+                                  <a href="details.html" class="btn btn-primary">More information
+                                  </a>
+                          </div>                       
     
     `;
 

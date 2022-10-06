@@ -21,9 +21,10 @@ for (let i = 0; i < events.length; i++) {
                                   class="datos-datos-cards">${events[i].category}</span></p>                                      
                            <p class="card-text"><span class="datos-cards">Price:</span><span class="datos-datos-cards"> $
                           ${events[i].price}</span></p>
-                          <a href="details.html" class="btn btn-primary">More information
-  
-                          </a>                         
+                          <div class="d-flex justify-content-end">
+                                  <a href="details.html" class="btn btn-primary">More information
+                                  </a>
+                          </div>                       
     
     `;
 
