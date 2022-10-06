@@ -2,39 +2,66 @@
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
 }
 
-.details,
+.principal,
 .upcoming_events,
+.past_events,
 .stats,
 .contact,
-.past_events {
+.details {
   min-height: 80vh;
 }
 
-header {
-  min-height: 10vh;
+.gotop {
+  z-index: 99999;
+  position: fixed;
+  bottom: 20px;
+  right: 35px;
+  border: none !important;
+  border-radius: 150px;
 }
 
-.navbar {
-  min-height: 10vh;
+.gotop img {
+  width: 50px;
+  transform: rotate(90deg);
 }
 
 footer {
-  min-height: 10vh;
-  background-color: rgba(174, 174, 175, 0.164);
+  min-height: 15vh;
+  width: 100%;
+  box-shadow: rgba(149, 157, 165, 0.445) 0px 8px 24px;
+}
+
+hr {
+  width: 90vw;
 }
 
 .primario {
   color: rgb(233, 40, 104) !important;
 }
 
+nav {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  min-height: 5vh;
+}
+
+header img {
+  width: 150px;
+}
+
 /*/ Arranca index /*/
 
+nav ul li a {
+  color: rgb(26, 25, 25) !important;
+}
+
 nav .active {
-  text-decoration: underline !important;
-  color: rgb(223, 53, 147) !important;
-  transform: scale(1.1);
+  background-color: rgb(233, 40, 120);
+  border-radius: 10px;
+  padding: 5px 50px;
+  color: white !important;
 }
 
 .carousel-item {
@@ -48,20 +75,21 @@ nav .active {
 }
 
 h2 {
-  color: rgb(233, 40, 120);
+  color: rgb(26, 25, 25);
   width: 100%;
-  background-color: #ffffff;
-  border-bottom: 1px solid;
+  font-weight: bolder !important;
+  letter-spacing: 0.055em;
 }
 
 .card {
   width: 25rem !important;
+  --bs-card-border-width: 0px !important;
+  --bs-card-title-spacer-y: 0rem !important;
 }
 
 .card_events {
   box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.568);
   margin: 2%;
-  border: 1px solid rgba(0, 0, 0, 0.493) !important;
 }
 
 .pic_event_card img {
@@ -90,12 +118,17 @@ h2 {
   font-weight: 300;
 }
 
+.pic_event_card {
+  position: relative;
+}
+
 .pic_event_card h5 {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.699);
   color: white;
   width: 100%;
   padding: 25px 0;
+  bottom: 0;
 }
 
 .btn {
@@ -105,11 +138,6 @@ h2 {
 }
 
 /*/ empieza upcoming events /*/
-
-.upcoming_events,
-.past_events {
-  padding-top: 120px;
-}
 
 /*/ empieza contact /*/
 
@@ -177,18 +205,28 @@ h3 {
 }
 
 @media (min-width: 992px) {
-  .carousel-item {
-    height: 980px;
+  .gotop {
+    right: 15px;
+  }
+
+  .active {
+    background-color: rgb(233, 40, 120);
+    border-radius: 5px;
+    padding: 0px;
+    color: white !important;
+  }
+
+  .active:hover {
+    color: white !important;
+  }
+
+  li a:hover {
+    color: rgb(233, 40, 120) !important;
   }
 
   .card:hover {
     transition: 200ms;
     transform: scale(1.02);
-  }
-
-  .upcoming_events,
-  .past_events {
-    padding-top: 150px;
   }
 
   .redes img:hover {
@@ -197,6 +235,13 @@ h3 {
 }
 
 @media (min-width: 1200px) {
+  .gotop {
+    right: 35px;
+  }
+
+  .carousel-item {
+    height: 875px;
+  }
 }
 
 @media (min-width: 1400px) {

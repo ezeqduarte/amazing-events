@@ -18,10 +18,15 @@
 </head>
 
 <body>
-    <header class="bg-light prueba fixed-top">
+    <a href="index.html" class="d-none d-lg-block">
+        <button class="gotop">
+            <img src="https://cdn-icons-png.flaticon.com/512/7718/7718402.png" alt="flecha_top">
+        </button>
+    </a>
+    <header class="bg-white">
         <nav class="navbar navbar-expand-lg pt-2 pt-lg-1 ">
-            <div class="container-fluid px-3 px-lg-5">
-                <img src="./assets/img/LogoAmazingEvents.png" style="width: 200px;" alt="logo_amazing">
+            <div class="container-fluid px-3 px-lg-5 justify-content-around justify-content-lg-end">
+                <img src="./assets/img/LogoAmazingEvents.png" alt="logo_amazing">
                 <h1 class="d-flex d-none">UpcomingEvents</h1>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +55,7 @@
         </nav>
     </header>
 
-    <div class="principal">
+    <div class="principal bg-light">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item ">
@@ -78,51 +83,25 @@
             </button>
         </div>
         <section class="Home">
-            <h2 class="text-center pt-5">Home</h2>
+            <h2 class="text-center pt-5">Events<span class="primario">.</span></h2>
             <div id="contenido_home" class="cont_cards_home d-flex flex-wrap justify-content-center p-4">
-                <!-- <div class="card card_events p-0">
-                    <div class="pic_event_card d-flex align-items-center justify-content-center">
-                        <img src="./assets/img/Salidaalmuseo5.jpg" alt="museo">
-                        <h5 class="card-title text-center">Museum</h5>
-                    </div>
-                    <div class="card-body d-flex flex-column justify-content-around">
-                        <p class="card-text text-center texto-cards">"The most famous museum in the city opens its
-                            doors
-                            so
-                            you can learn much of the history"</p>
-                        <p class="card-text"><span class="datos-cards">Date:</span> <span
-                                class="datos-datos-cards">21/11/2022</span></p>
-                        <p class="card-text"><span class="datos-cards">Category:</span> <span
-                                class="datos-datos-cards">Literature</span></p>
-                        <p class="card-text"><span class="datos-cards">Place:</span> <span class="datos-datos-cards">
-                                Furnald Hall, 2950 Broadway, New
-                                York,
-                                NY 10027, Estados Unidos
-                            </span></p>
-                        <p class="card-text"><span class="datos-cards">Capacity:</span> <span
-                                class="datos-datos-cards">20,000</span></p>
-                        <p class="card-text"><span class="datos-cards">Assistance:</span><span
-                                class="datos-datos-cards"> 11,000</span></p>
-                        <p class="card-text"><span class="datos-cards">Price:</span><span class="datos-datos-cards">
-                                $4,00</span></p>
-                        <a href="details.html" class="btn btn-primary">¡Enter for more information!
 
-                        </a>
-                    </div> -->
             </div>
         </section>
 
     </div>
 
-    <footer class="d-flex p-3 flex-column flex-lg-row justify-content-around align-items-center">
-        <div class="redes pb-3">
+    <footer class="d-flex bg-light p-3 flex-column align-items-center">
+        <div class="redes">
             <img src="https://img.icons8.com/ios-glyphs/60/000000/facebook-new.png" alt="facebook">
             <img src="https://img.icons8.com/sf-ultralight-filled/70/000000/whatsapp.png" alt="whatsapp">
             <img src="https://img.icons8.com/ios-glyphs/60/000000/instagram-new.png" alt="instagram">
         </div>
+        <hr>
+
         <div class="text-center p_footer d-flex flex-column justify-content-center align-items-center">
-            <p class="text-uppercase m-0">design and cooding by ezequiel duarte</p>
-            <p class="text-uppercase m-0">MindHub Cohort36 - Full stack MERN </p>
+            <p class="text-uppercase m-0">Copyright © 2022 Amazing Events by Duarte, Ezequiel.</p>
+            <p class="text-uppercase m-0">MindHub Full stack MERN Cohort 36 </p>
         </div>
 
     </footer>
