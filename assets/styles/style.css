@@ -110,7 +110,7 @@ h2 {
   border-top-left-radius: 0px !important;
 }
 
-.button_submit:hover {
+.button_submit:active {
   transform: scale(0.97);
 }
 
@@ -178,6 +178,10 @@ h2 {
   border-radius: 10px !important;
   border-bottom-right-radius: 0px !important;
   border-top-left-radius: 0px !important;
+}
+
+.btn:active {
+  transform: scale(0.99);
 }
 
 /*/ empieza upcoming events /*/
@@ -270,6 +274,12 @@ h3 {
   .card:hover {
     transition: 200ms;
     transform: scale(1.02);
+  }
+
+  .redes img {
+    width: 50px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 20px;
   }
 
   .redes img:hover {
