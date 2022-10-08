@@ -32,7 +32,7 @@ footer {
   z-index: 999;
   min-height: 15vh;
   width: 100%;
-  box-shadow: rgba(149, 157, 165, 0.445) 0px 8px 24px;
+  /* box-shadow: rgba(149, 157, 165, 0.445) 0px 8px 24px; */
 }
 
 hr {
@@ -44,7 +44,7 @@ hr {
 }
 
 nav {
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(141, 146, 151, 0.082) 0px 8px 24px;
   min-height: 5vh;
 }
 
@@ -188,20 +188,24 @@ h2 {
 
 /*/ empieza contact /*/
 
-.formulario {
-  width: 100%;
-  box-shadow: 5px 5px 15px;
+.text_contact form {
+  border-radius: 10px;
 }
 
-.formulario form {
-  width: 100%;
+.text_contact input {
+  border-radius: 10px;
 }
 
-.botons_form {
-  width: 100%;
+.pic_contact img {
+  width: 80%;
+  border-radius: 35px;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
 }
-.message {
-  height: 20rem;
+
+.e_mail:active {
+  border: none !important;
 }
 
 /*/ stats /*/
@@ -249,6 +253,9 @@ h3 {
 }
 
 @media (min-width: 768px) {
+  .text_contact h5 {
+    width: 60%;
+  }
 }
 
 @media (min-width: 992px) {
@@ -271,19 +278,13 @@ h3 {
     color: rgb(233, 40, 120) !important;
   }
 
+  .card {
+    width: 19% !important;
+  }
+
   .card:hover {
     transition: 200ms;
     transform: scale(1.02);
-  }
-
-  .redes img {
-    width: 50px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    border-radius: 20px;
-  }
-
-  .redes img:hover {
-    transform: scale(1.03);
   }
 }
 
@@ -293,7 +294,7 @@ h3 {
   }
 
   .carousel-item {
-    height: 870px;
+    height: 770px;
   }
 }
 
