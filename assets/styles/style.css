@@ -314,7 +314,7 @@ body::-webkit-scrollbar-thumb {
   }
 
   .card {
-    width: 19% !important;
+    width: 350px !important;
   }
 
   .card:hover {
