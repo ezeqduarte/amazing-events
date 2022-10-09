@@ -263,6 +263,23 @@ h3 {
   width: 100%;
 }
 
+/*/ barra de scroll /*/
+
+body::-webkit-scrollbar {
+  width: 15px;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(233, 40, 104, 0.89);
+  border-radius: 0px;
+}
+
+/*/ querys /*/
+
 @media (min-width: 576px) {
 }
 
@@ -313,6 +330,11 @@ h3 {
   .tabla:hover {
     transform: scale(1.005);
     transition: ease-in-out 200ms;
+  }
+
+  .links a:hover {
+    transform: scale(1.05);
+    transition: 200ms;
   }
 }
 
