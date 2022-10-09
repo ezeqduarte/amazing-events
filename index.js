@@ -1,32 +1,65 @@
-let fechaactual = data.currentDate;
-let events = data.events;
+let container = document.getElementById("container_cards");
 
-let container = document.getElementById("contenido_home");
-for (i = 0; i < events.length; i++) {
-  let cartas = document.createElement("div");
-  cartas.className = "card card_events p-0";
-  cartas.innerHTML += `
+filter(data.events, data.currentDate);
+sprintCards(filter(data.events, data.currentDate), container);
 
-                <div class="pic_event_card d-flex align-items-center justify-content-center">
-                        <img src="${events[i].image}" alt="${events[i].image}">
-                        <h5 class="card-title text-center d-flex align-items-center justify-content-center">${events[i].name}</h5>
-                </div>
-                <div class="card-body d-flex flex-column justify-content-between">
-                        <p class="card-text text-center texto-cards">${events[i].description}</p>
-                        <p class="card-text"><span class="datos-cards">Date:</span> <span
-                                class="datos-datos-cards">${events[i].date}</span></p>
-                        <p class="card-text"><span class="datos-cards">Category:</span> <span
-                                class="datos-datos-cards">${events[i].category}</span></p>                                      
-                         <p class="card-text"><span class="datos-cards">Price:</span><span class="datos-datos-cards"> $
-                        ${events[i].price}</span></p>
-                        <div class="d-flex justify-content-end">
-                                <a href="details.html" class="btn btn-primary">More information
-                                </a>
-                        </div>                       
-                </div>                       
-  
+console.log(filter(data.events, data.currentDate));
 
-  `;
+/*/ Functions /*/
 
-  container.appendChild(cartas);
+function sprintCards(events, container) {
+  for (const event of events) {
+    container.innerHTML += `
+    
+    <div class="card card_events p-2">
+    <div class="pic_event_card d-flex align-items-center justify-content-center">
+    <img src="${event.image}" alt="${event.image}">
+    <h5 class="card-title text-center">${event.name}</h5>
+    </div>
+    <div class="card-body d-flex flex-column justify-content-between">
+    <p class="card-text text-center texto-cards">${event.description}</p>
+    <p class="card-text">
+    <span class="datos-cards">Date:</span>
+    <span class="datos-datos-cards">${event.date}</span>
+    </p>
+    <p class="card-text">
+    <span class="datos-cards">Category:</span>
+    <span class="datos-datos-cards">${event.category}</span>
+    </p>                                      
+    <p class="card-text">
+    <span class="datos-cards">Price:</span>
+    <span class="datos-datos-cards"> $ ${event.price}</span>
+    </p>
+    </div>  
+    <div class="d-flex justify-content-end">
+    <a href="details.html" class="btn btn-primary">More information</a>
+    </div>                  
+    </div>
+    `;
+  }
+}
+
+function filter(events, date) {
+  let eventos = [];
+
+  if (document.title === "Home") {
+    for (const event of events) {
+      eventos.push(event);
+    }
+    return eventos;
+  } else if (document.title === "Upcoming Events") {
+    for (const event of events) {
+      if (event.date > date) {
+        eventos.push(event);
+      }
+    }
+    return eventos;
+  } else if (document.title === "Past Events") {
+    for (const event of events) {
+      if (event.date < date) {
+        eventos.push(event);
+      }
+    }
+    return eventos;
+  }
 }
