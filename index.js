@@ -1,9 +1,7 @@
 let container = document.getElementById("container_cards");
 
-filter(data.events, data.currentDate);
-sprintCards(filter(data.events, data.currentDate), container);
-
-console.log(filter(data.events, data.currentDate));
+let filteredEvents = filter(data.events, data.currentDate);
+sprintCards(filteredEvents, container);
 
 /*/ Functions /*/
 
@@ -41,28 +39,27 @@ function sprintCards(events, container) {
 }
 
 function filter(events, date) {
-  let eventos = [];
+  let filteredEvents = [];
 
-  if (document.title === "Home") {    
-      eventos = events          
+  if (document.title === "Home") {
+    filteredEvents = events;
   }
-  
+
   if (document.title === "Upcoming Events") {
     for (const event of events) {
       if (event.date > date) {
-        eventos.push(event);
+        filteredEvents.push(event);
       }
     }
-    
   }
 
   if (document.title === "Past Events") {
     for (const event of events) {
       if (event.date < date) {
-        eventos.push(event);
+        filteredEvents.push(event);
       }
     }
   }
-  
-  return eventos;
+
+  return filteredEvents;
 }
