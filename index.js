@@ -43,24 +43,26 @@ function sprintCards(events, container) {
 function filter(events, date) {
   let eventos = [];
 
-  if (document.title === "Home") {
-    for (const event of events) {
-      eventos.push(event);
-    }
-    return eventos;
-  } else if (document.title === "Upcoming Events") {
+  if (document.title === "Home") {    
+      eventos = events          
+  }
+  
+  if (document.title === "Upcoming Events") {
     for (const event of events) {
       if (event.date > date) {
         eventos.push(event);
       }
     }
-    return eventos;
-  } else if (document.title === "Past Events") {
+    
+  }
+
+  if (document.title === "Past Events") {
     for (const event of events) {
       if (event.date < date) {
         eventos.push(event);
       }
     }
-    return eventos;
   }
+  
+  return eventos;
 }
