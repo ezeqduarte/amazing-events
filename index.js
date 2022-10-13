@@ -1,13 +1,16 @@
+let events = data.events;
+
 let container = document.getElementById("container_cards");
 
 let filteredEvents = filter(data.events, data.currentDate);
-sprintCards(filteredEvents, container);
+
+
+filteredEvents.forEach(sprintCards);
 
 /*/ Functions /*/
 
-function sprintCards(events, container) {
-  for (const event of events) {
-    container.innerHTML += `
+function sprintCards(event) {
+  container.innerHTML += `
     
     <div class="card card_events p-2">
       <div class="pic_event_card d-flex align-items-center justify-content-center">
@@ -35,31 +38,26 @@ function sprintCards(events, container) {
     </div>
     
     `;
-  }
 }
 
 function filter(events, date) {
-  let filteredEvents = [];
-
-  if (document.title === "Home") {
-    filteredEvents = events;
-  }
-
-  if (document.title === "Upcoming Events") {
-    for (const event of events) {
-      if (event.date > date) {
-        filteredEvents.push(event);
-      }
+  let filteredEvents = events.filter((evento)=>{
+    
+    if (document.title==="Home"){
+      return evento
     }
-  }
 
-  if (document.title === "Past Events") {
-    for (const event of events) {
-      if (event.date < date) {
-        filteredEvents.push(event);
-      }
+    if (document.title==="Upcoming Events"){
+      return evento.date > date
     }
-  }
+
+    if (document.title==="Past Events"){
+      return evento.date < date
+    }
+
+  });
+
+  
 
   return filteredEvents;
 }
