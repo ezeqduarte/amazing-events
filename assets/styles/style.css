@@ -53,7 +53,7 @@ nav {
 }
 
 header img {
-  width: 150px;
+  width: 120px;
 }
 
 /*/ Arranca index /*/
@@ -84,6 +84,7 @@ h2 {
   width: 100%;
   font-weight: bolder !important;
   letter-spacing: 0.055em;
+  font-size: 1.875rem !important ;
 }
 
 .checksbox {
@@ -123,7 +124,7 @@ h2 {
   border-top-right-radius: 25px !important;
   border-bottom-left-radius: 25px !important;
   border-bottom-right-radius: 0px !important;
-  width: 23rem !important;
+  width: 23rem !important;  
   --bs-card-border-width: 0px !important;
   --bs-card-title-spacer-y: 0rem !important;
 }
@@ -266,7 +267,7 @@ h3 {
 /*/ barra de scroll /*/
 
 body::-webkit-scrollbar {
-  width: 15px;
+  width: 10px;
 }
 
 body::-webkit-scrollbar-track {
@@ -274,8 +275,9 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: rgba(233, 40, 104, 0.89);
-  border-radius: 0px;
+  background-color: rgb(233, 40, 104);
+  border-radius: 10px;
+  
 }
 
 /*/ querys /*/
