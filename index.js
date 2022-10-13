@@ -4,10 +4,11 @@ let container = document.getElementById("container_cards");
 
 let filteredEvents = filter(data.events, data.currentDate);
 
-
 filteredEvents.forEach(sprintCards);
 
 /*/ Functions /*/
+
+/*/funcion para imprimir cartas de cada evento /*/
 
 function sprintCards(event) {
   container.innerHTML += `
@@ -40,24 +41,22 @@ function sprintCards(event) {
     `;
 }
 
+/*/funcion para filtrar los eventos dependiendo de la pagina en la que este y de la current date /*/
+
 function filter(events, date) {
-  let filteredEvents = events.filter((evento)=>{
-    
-    if (document.title==="Home"){
-      return evento
+  let filteredEvents = events.filter((evento) => {
+    if (document.title === "Home") {
+      return evento;
     }
 
-    if (document.title==="Upcoming Events"){
-      return evento.date > date
+    if (document.title === "Upcoming Events") {
+      return evento.date > date;
     }
 
-    if (document.title==="Past Events"){
-      return evento.date < date
+    if (document.title === "Past Events") {
+      return evento.date < date;
     }
-
   });
-
-  
 
   return filteredEvents;
 }
