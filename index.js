@@ -1,17 +1,56 @@
 let events = data.events;
 
-let container = document.getElementById("container_cards");
+/*/ container de cards y checkboxs /*/
 
+let container_cards = document.getElementById("container_cards");
+let container_checkboxs = document.getElementById("box_checksbox");
+
+/*/ filtre los eventos /*/
 let filteredEvents = filter(data.events, data.currentDate);
 
+/*/imprimi las cards/*/
 filteredEvents.forEach(sprintCards);
 
+/*/Array de categorias /*/
+let categoriesEvents = events.map((event) => event.category);
+let categoriesEventsFilter = [...new Set(categoriesEvents)]
+
+console.log(categoriesEventsFilter);
+
+
+/*/imprimi los checkboxs/*/
+categoriesEventsFilter.forEach(createCheckbox)
+
+
+
 /*/ Functions /*/
+
+/*/ funcion que me de un array con las categorias de los eventos /*/
+
+
+console.log(categoriesEventsFilter);
+
+
+function createCheckbox(category) {
+
+  container_checkboxs.innerHTML += `
+    
+  <label class="checkboxx d-flex mx-2">${category}
+    <input type="checkbox" class="mx-2" value="${category}">
+  </label>
+  
+  `;
+
+  console.log(category);
+
+}
+
+console.log(createCheckbox);
 
 /*/funcion para imprimir cartas de cada evento /*/
 
 function sprintCards(event) {
-  container.innerHTML += `
+  container_cards.innerHTML += `
     
     <div class="card card_events p-2">
       <div class="pic_event_card d-flex align-items-center justify-content-center">

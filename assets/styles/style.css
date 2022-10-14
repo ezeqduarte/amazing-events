@@ -95,6 +95,7 @@ h2 {
   width: 40%;
 }
 
+
 .search {
   padding: 5px;
   border-radius: 5px;
@@ -145,7 +146,8 @@ h2 {
 .texto-cards {
   color: rgb(52, 55, 56);
   font-weight: 300;
-  font-size: larger;
+  font-size: 1.125rem;
+  
   line-height: 25px;
 }
 
@@ -334,9 +336,14 @@ body::-webkit-scrollbar-thumb {
     transition: ease-in-out 200ms;
   }
 
+  .links a {
+   opacity: 0.2;
+  }
+
   .links a:hover {
     transform: scale(1.05);
     transition: 200ms;
+    opacity: 0.85;
   }
 }
 
