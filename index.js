@@ -4,6 +4,7 @@ let events = data.events;
 
 let container_cards = document.getElementById("container_cards");
 let container_checkboxs = document.getElementById("box_checksbox");
+let checksboxs_active = document.getElementsByClassName("checkbox_check");
 
 /*/ filtre los eventos /*/
 let filteredEvents = filter(data.events, data.currentDate);
@@ -13,39 +14,38 @@ filteredEvents.forEach(sprintCards);
 
 /*/Array de categorias /*/
 let categoriesEvents = events.map((event) => event.category);
-let categoriesEventsFilter = [...new Set(categoriesEvents)]
+let categoriesEventsFilter = [...new Set(categoriesEvents)];
 
-console.log(categoriesEventsFilter);
 
 
 /*/imprimi los checkboxs/*/
-categoriesEventsFilter.forEach(createCheckbox)
+categoriesEventsFilter.forEach(createCheckbox);
+
+/*/ evento de checkboxs /*/
+
+console.log(checksboxs_active);
+let checkboxs = 
 
 
+/* checksboxs_active.addEventListener("change", function (event) {
+  console.log("cambio el select", event);
+}); */
 
 /*/ Functions /*/
 
 /*/ funcion que me de un array con las categorias de los eventos /*/
 
 
-console.log(categoriesEventsFilter);
-
 
 function createCheckbox(category) {
-
   container_checkboxs.innerHTML += `
     
-  <label class="checkboxx d-flex mx-2">${category}
-    <input type="checkbox" class="mx-2" value="${category}">
+  <label class="checksbox_label d-flex mx-2">${category}
+    <input type="checkbox" class="mx-2 checkbox_check" value="${category}">
   </label>
   
   `;
-
-  console.log(category);
-
 }
-
-console.log(createCheckbox);
 
 /*/funcion para imprimir cartas de cada evento /*/
 

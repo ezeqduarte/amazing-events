@@ -11,7 +11,7 @@
 .stats,
 .contact,
 .details {
-  min-height: 75vh;
+  min-height: 75.7vh;
 }
 
 .gotop {
@@ -49,17 +49,18 @@ nav {
 }
 
 nav {
-  min-height: 5vh;
+  min-height: 7vh;
 }
 
 header img {
-  width: 120px;
+  width: 100px;
 }
 
 /*/ Arranca index /*/
 
 nav ul li a {
   color: rgb(26, 25, 25) !important;
+  font-size: .85rem !important;
 }
 
 nav .active {
@@ -191,16 +192,18 @@ h2 {
 
 /*/ empieza contact /*/
 
+
 .text_contact form {
   border-radius: 10px;
 }
+
 
 .text_contact input {
   border-radius: 10px;
 }
 
 .pic_contact img {
-  width: 80%;
+  width: 70%;
   border-radius: 35px;
   border-top-left-radius: 0px;
   border-bottom-right-radius: 0px;
