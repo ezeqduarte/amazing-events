@@ -100,6 +100,7 @@ h2 {
 .search {
   padding: 5px;
   border-radius: 5px;
+  border: rgba(26, 25, 25, 0.473) 1px solid;
 }
 
 .button_submit {
@@ -111,10 +112,6 @@ h2 {
   border-radius: 10px !important;
   border-bottom-right-radius: 0px !important;
   border-top-left-radius: 0px !important;
-}
-
-.button_submit:active {
-  transform: scale(0.97);
 }
 
 .checksbox input {
