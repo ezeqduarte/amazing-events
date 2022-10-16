@@ -11,7 +11,7 @@
 .stats,
 .contact,
 .details {
-  min-height: 75.7vh;
+  min-height: 100vh;
 }
 
 .gotop {
@@ -43,6 +43,23 @@ hr {
   color: rgb(233, 40, 104) !important;
 }
 
+.carousel-item img {
+  position: relative;
+}
+
+.carousel-caption {
+  left: 0% !important; 
+  top: 43%;
+  bottom: auto !important;
+  background-color: rgba(0, 0, 0, 0.36);
+  width: 100%;
+}
+
+.carousel-caption h2 {
+  color: white;
+
+}
+
 nav {
   box-shadow: rgba(141, 146, 151, 0.082) 0px 8px 24px;
   min-height: 5vh;
@@ -53,14 +70,13 @@ nav {
 }
 
 header img {
-  width: 100px;
+  width: 150px;
 }
 
 /*/ Arranca index /*/
 
 nav ul li a {
   color: rgb(26, 25, 25) !important;
-  font-size: .85rem !important;
 }
 
 nav .active {
@@ -96,19 +112,14 @@ h2 {
   width: 40%;
 }
 
-
 .search {
-  padding: 5px;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 15px;
   border: rgba(26, 25, 25, 0.473) 1px solid;
 }
 
-.button_submit {
-  border-radius: 5px;
-  padding: 5px;
-  color: white;
-  background-color: rgb(233, 40, 120);
-  border: 1px solid rgb(233, 40, 120);
+.button_submit img {
+  width: 45px;
   border-radius: 10px !important;
   border-bottom-right-radius: 0px !important;
   border-top-left-radius: 0px !important;
@@ -123,7 +134,7 @@ h2 {
   border-top-right-radius: 25px !important;
   border-bottom-left-radius: 25px !important;
   border-bottom-right-radius: 0px !important;
-  width: 23rem !important;  
+  width: 23rem !important;
   --bs-card-border-width: 0px !important;
   --bs-card-title-spacer-y: 0rem !important;
 }
@@ -145,7 +156,7 @@ h2 {
   color: rgb(52, 55, 56);
   font-weight: 300;
   font-size: 1.125rem;
-  
+
   line-height: 25px;
 }
 
@@ -189,18 +200,16 @@ h2 {
 
 /*/ empieza contact /*/
 
-
 .text_contact form {
   border-radius: 10px;
 }
-
 
 .text_contact input {
   border-radius: 10px;
 }
 
 .pic_contact img {
-  width: 70%;
+  width: 85%;
   border-radius: 35px;
   border-top-left-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -279,7 +288,6 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: rgb(233, 40, 104);
   border-radius: 10px;
-  
 }
 
 /*/ querys /*/
@@ -337,13 +345,17 @@ body::-webkit-scrollbar-thumb {
   }
 
   .links a {
-   opacity: 0.2;
+    opacity: 0.2;
   }
 
   .links a:hover {
     transform: scale(1.05);
     transition: 200ms;
     opacity: 0.85;
+  }
+
+  html {
+    zoom: 80%;
   }
 }
 
@@ -353,7 +365,7 @@ body::-webkit-scrollbar-thumb {
   }
 
   .carousel-item {
-    height: 800px;
+    height: 950px;
   }
 }
 
