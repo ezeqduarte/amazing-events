@@ -14,6 +14,10 @@
   min-height: 100vh;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .gotop {
   z-index: 5;
   position: fixed;
@@ -112,17 +116,16 @@ h2 {
   width: 40%;
 }
 
-.search {
+.search { 
   padding: 10px;
-  border-radius: 15px;
+  border-radius: 10px;
   border: rgba(26, 25, 25, 0.473) 1px solid;
 }
 
 .button_submit img {
-  width: 45px;
+  width: 43px;
   border-radius: 10px !important;
-  border-bottom-right-radius: 0px !important;
-  border-top-left-radius: 0px !important;
+ 
 }
 
 .checksbox input {
@@ -131,6 +134,7 @@ h2 {
 }
 
 .card {
+  
   border-top-right-radius: 25px !important;
   border-bottom-left-radius: 25px !important;
   border-bottom-right-radius: 0px !important;
@@ -197,6 +201,33 @@ h2 {
 }
 
 /*/ empieza upcoming events /*/
+
+.intro_upcoming {
+  background-image: url("../img/upcomingImg.png");
+  background-repeat: no-repeat;
+  background-position: 80%;
+  height: 95vh;  
+}
+
+.intro_upcoming div {
+  background-color: rgba(255, 255, 255, 0.741);
+  
+}
+
+.intro_upcoming a {
+  color: rgb(233, 40, 104) !important;
+  text-decoration: none;
+  scroll-behavior: smooth;
+}
+
+
+
+.intro_upcoming button img {
+  width: 35px;
+  transform: rotate(-135deg);
+}
+
+
 
 /*/ empieza contact /*/
 
@@ -293,6 +324,10 @@ body::-webkit-scrollbar-thumb {
 /*/ querys /*/
 
 @media (min-width: 576px) {
+  .search {
+    width: 450px;    
+  }
+  
 }
 
 @media (min-width: 768px) {
@@ -303,6 +338,12 @@ body::-webkit-scrollbar-thumb {
   td {
     font-size: 1rem;
   }
+
+  .search {
+    width: 600px;    
+  }
+
+  
 }
 
 @media (min-width: 992px) {
@@ -331,7 +372,7 @@ body::-webkit-scrollbar-thumb {
 
   .card:hover {
     transition: 200ms;
-    transform: scale(1.02);
+    transform: scale(1.01);
   }
 
   .details .card:hover {
@@ -357,6 +398,28 @@ body::-webkit-scrollbar-thumb {
   html {
     zoom: 80%;
   }
+
+  .intro_upcoming {
+    
+    height: 120vh;  
+  }
+  
+  .intro_upcoming div {
+    background-color: transparent;
+    
+  }
+
+  .intro_upcoming p:hover {
+    transform: scale(1.03);
+    transition: 200ms;
+    text-decoration: underline;
+  }
+
+  .search {
+    width: 850px;    
+  }
+
+  
 }
 
 @media (min-width: 1200px) {
@@ -365,7 +428,7 @@ body::-webkit-scrollbar-thumb {
   }
 
   .carousel-item {
-    height: 950px;
+    height: 1000px;
   }
 }
 

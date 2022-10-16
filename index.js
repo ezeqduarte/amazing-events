@@ -123,7 +123,7 @@ function printCards(event) {
           <h5 class="card-title text-center">${event.name}</h5>
       </div>
       <div class="card-body d-flex flex-column justify-content-between">
-          <p class="card-text text-center texto-cards">${event.description}</p>
+          <p class="card-text py-2 text-center texto-cards">${event.description}</p>
           <p class="card-text">
               <span class="datos-cards">Date:</span>
               <span class="datos-datos-cards">${event.date}</span>
