@@ -1,116 +1,33 @@
-/*/ defini todos los eventos para despues hacer los checkboxs /*/
+/*/ Eventos de la api y data de filtrado /*/
 const allEvents = data.events;
+const currentDate = data.currentDate;
 
 /*/ Containers para DOM /*/
 let container_cards = document.getElementById("container_cards");
 let container_checkboxs = document.getElementById("box_checksbox");
-let containter_search = document.getElementById ("search")
+let containter_search = document.getElementById("search");
 
+/*/funcion para filtrar los eventos dependiendo de la pagina en la que este y de la current date /*/
 
+function filter(events, date) {
+  let filteredEvents = events.filter((evento) => {
+    if (document.title === "Home") {
+      return evento;
+    }
 
-/*/ filtre los eventos aplicandole el filtro por currentDate /*/
+    if (document.title === "Upcoming Events") {
+      return evento.date > date;
+    }
 
-let eventosFiltrados = filter(allEvents, data.currentDate);
+    if (document.title === "Past Events") {
+      return evento.date < date;
+    }
+  });
 
-/*/imprimi las cards/*/
-
-eventosFiltrados.forEach(printCards);
-
-/*/Array de categorias /*/
-
-let categoriesEvents = [...new Set(allEvents.map((event) => event.category))];
-
-
-/*/imprimi los checkboxs/*/
-
-categoriesEvents.forEach(createCheckbox);
-
-
-/*/ Aca filtro por texto /*/
-
-let searchForText = ""
-
-containter_search.addEventListener('input', function (e){
-
-  searchForText = e.target.value
-  filtrandoAndo ( )
-  
-
-})
-
-
-/*/ aca filtro por checkboxs /*/
-
-let categoriesChecked = []
-
-container_checkboxs.addEventListener ('change', function (e){
-
-  
-
-  if (e.target.checked) {
-    categoriesChecked.push(e.target.value)
-  } else (
-    categoriesChecked=categoriesChecked.filter(value => value != e.target.value)
-  )
-
-  filtrandoAndo ( )
-  
-  
-  
-})
-
-function filtrandoAndo ( ) {
-
-  let eventsFilterPorTexto = eventosFiltrados.filter(evento => evento.name.toLowerCase().includes(searchForText.toLowerCase())) 
-  
-
-
-  container_cards.innerHTML = " "
-  if (categoriesChecked.length===0){
-    eventsFilterPorTexto.forEach(printCards)
-  } else {
-    let eventFilterPorTodo = eventsFilterPorTexto.filter (evento => categoriesChecked.includes(evento.category))
-    eventFilterPorTodo.forEach(printCards)
-  }  
-
-
+  return filteredEvents;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*/------------------------------------------------------------------------ Functions --------------------------------------------------------------------- /*/
-
-/*/ funcion que me de un array con las categorias de los eventos /*/
-
-function createCheckbox(category) {
-  container_checkboxs.innerHTML += `
-  
-  <label class="d-flex  mx-2">${category}
-    <input type="checkbox" class="mx-2 checksbox_input" value="${category}">
-  </label>
-  
-  `;
-}
+let eventosFiltrados = filter(allEvents, currentDate);
 
 /*/funcion para imprimir cartas de cada evento /*/
 
@@ -145,24 +62,69 @@ function printCards(event) {
     `;
 }
 
-/*/funcion para filtrar los eventos dependiendo de la pagina en la que este y de la current date /*/
+eventosFiltrados.forEach(printCards);
 
-function filter(events, date) {
-  let filteredEvents = events.filter((evento) => {
-    if (document.title === "Home") {
-      return evento;
-    }
+/*/Array de categorias /*/
 
-    if (document.title === "Upcoming Events") {
-      return evento.date > date;
-    }
+let categoriesEvents = [...new Set(allEvents.map((event) => event.category))];
 
-    if (document.title === "Past Events") {
-      return evento.date < date;
-    }
-  });
+/*/ funcion que me de un array con las categorias de los eventos /*/
 
-  return filteredEvents;
+function createCheckbox(category) {
+  container_checkboxs.innerHTML += `
+  
+  <label class="d-flex  mx-2">${category}
+    <input type="checkbox" class="mx-2 checksbox_input" value="${category}">
+  </label>
+  
+  `;
 }
 
+/*/imprimi los checkboxs/*/
 
+categoriesEvents.forEach(createCheckbox);
+
+/*/ Aca filtro por texto /*/
+
+let searchForText = "";
+
+containter_search.addEventListener("input", function (e) {
+  searchForText = e.target.value;
+  console.log(`searchForText adentro de la funcion: ${searchForText}`);
+  filtrado();
+});
+
+console.log(`searchForText afuera de la funcion: ${searchForText}`);
+
+/*/ aca filtro por checkboxs /*/
+
+let categoriesChecked = [];
+
+container_checkboxs.addEventListener("change", function (e) {
+  if (e.target.checked) {
+    categoriesChecked.push(e.target.value);
+  } else categoriesChecked = categoriesChecked.filter((value) => value != e.target.value);
+  console.log(`categoriesChecked adentro de la funcion: ${categoriesChecked}`);
+  filtrado();
+});
+
+console.log(`categoriesChecked afuera de la funcion: ${categoriesChecked}`);
+
+function filtrado() {
+  let eventsFilterPorTexto = eventosFiltrados.filter((evento) =>
+    evento.name.toLowerCase().includes(searchForText.toLowerCase())
+  );
+
+  container_cards.innerHTML = " ";
+
+  if (categoriesChecked.length === 0) {
+    eventsFilterPorTexto.forEach(printCards);
+    return;
+  }
+
+  let eventFilterPorTodo = eventsFilterPorTexto.filter((evento) =>
+    categoriesChecked.includes(evento.category)
+  );
+
+  eventFilterPorTodo.forEach(printCards);
+}

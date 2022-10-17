@@ -11,7 +11,7 @@
 .stats,
 .contact,
 .details {
-  min-height: 100vh;
+  min-height: 99.4vh;
 }
 
 html {
@@ -227,7 +227,7 @@ h2 {
 /*/ empieza past /*/
 
 .intro_past {
-  background-image: url("https://www.nicepng.com/png/full/162-1623995_tony-stark-iron-man-no-helmet-tony-stark.png");
+  background-image: url("../img/162-1623995_tony-stark-iron-man-no-helmet-tony-stark.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 520px ;
