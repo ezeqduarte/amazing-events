@@ -11,7 +11,11 @@
 .stats,
 .contact,
 .details {
-  min-height: 75.7vh;
+  min-height: 99.4vh;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .gotop {
@@ -23,16 +27,14 @@
   border-radius: 150px;
 }
 
-.gotop img {
-  width: 50px;
-  transform: rotate(90deg);
+footer {
+  min-height: 17vh;
+  width: 100%;
+  box-shadow: rgb(4, 4, 4) 0px 20px 25px;
 }
 
-footer {
-  z-index: 999;
-  min-height: 15vh;
-  width: 100%;
-  /* box-shadow: rgba(149, 157, 165, 0.445) 0px 8px 24px; */
+footer p {
+  font-weight: 400;
 }
 
 hr {
@@ -41,6 +43,22 @@ hr {
 
 .primario {
   color: rgb(233, 40, 104) !important;
+}
+
+.carousel-item img {
+  position: relative;
+}
+
+.carousel-caption {
+  left: 0% !important;
+  top: 43%;
+  bottom: auto !important;
+  background-color: rgba(0, 0, 0, 0.36);
+  width: 100%;
+}
+
+.carousel-caption h2 {
+  color: white;
 }
 
 nav {
@@ -53,14 +71,13 @@ nav {
 }
 
 header img {
-  width: 100px;
+  width: 150px;
 }
 
 /*/ Arranca index /*/
 
 nav ul li a {
   color: rgb(26, 25, 25) !important;
-  font-size: .85rem !important;
 }
 
 nav .active {
@@ -96,25 +113,15 @@ h2 {
   width: 40%;
 }
 
-
 .search {
-  padding: 5px;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  border: rgba(26, 25, 25, 0.473) 1px solid;
 }
 
-.button_submit {
-  border-radius: 5px;
-  padding: 5px;
-  color: white;
-  background-color: rgb(233, 40, 120);
-  border: 1px solid rgb(233, 40, 120);
+.button_submit img {
+  width: 43px;
   border-radius: 10px !important;
-  border-bottom-right-radius: 0px !important;
-  border-top-left-radius: 0px !important;
-}
-
-.button_submit:active {
-  transform: scale(0.97);
 }
 
 .checksbox input {
@@ -126,7 +133,7 @@ h2 {
   border-top-right-radius: 25px !important;
   border-bottom-left-radius: 25px !important;
   border-bottom-right-radius: 0px !important;
-  width: 23rem !important;  
+  width: 23rem !important;
   --bs-card-border-width: 0px !important;
   --bs-card-title-spacer-y: 0rem !important;
 }
@@ -148,7 +155,7 @@ h2 {
   color: rgb(52, 55, 56);
   font-weight: 300;
   font-size: 1.125rem;
-  
+
   line-height: 25px;
 }
 
@@ -190,20 +197,65 @@ h2 {
 
 /*/ empieza upcoming events /*/
 
-/*/ empieza contact /*/
+.intro_upcoming {
+  background-image: url("../img/upcomingImg.png");
+  background-repeat: no-repeat;
+  background-position: 80%;
+  height: 95vh;
+}
 
+.intro_upcoming div {
+  background-color: rgba(255, 255, 255, 0.741);
+}
+
+.intro_upcoming a {
+  color: rgb(233, 40, 104) !important;
+  text-decoration: none;
+  scroll-behavior: smooth;
+}
+
+.intro_upcoming button img {
+  width: 35px;
+  transform: rotate(-135deg);
+}
+
+/*/ empieza past /*/
+
+.intro_past {
+  background-image: url("../img/162-1623995_tony-stark-iron-man-no-helmet-tony-stark.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 520px;
+  height: 95vh;
+}
+
+.intro_past div {
+  background-color: rgba(255, 255, 255, 0.741);
+}
+
+.intro_past a {
+  color: rgb(233, 40, 104) !important;
+  text-decoration: none;
+  scroll-behavior: smooth;
+}
+
+.intro_past button img {
+  width: 35px;
+  transform: rotate(-135deg);
+}
+
+/*/ empieza contact /*/
 
 .text_contact form {
   border-radius: 10px;
 }
-
 
 .text_contact input {
   border-radius: 10px;
 }
 
 .pic_contact img {
-  width: 70%;
+  width: 85%;
   border-radius: 35px;
   border-top-left-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -243,7 +295,7 @@ td {
 }
 
 .details .card {
-  width: 80% !important;
+  width: 80% !important; 
   border-radius: 45px !important;
   border-bottom-right-radius: 0px !important;
   border-top-left-radius: 0px !important;
@@ -269,6 +321,10 @@ h3 {
   width: 100%;
 }
 
+.details .card-body div {
+width: 100%;
+}
+
 /*/ barra de scroll /*/
 
 body::-webkit-scrollbar {
@@ -282,12 +338,14 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: rgb(233, 40, 104);
   border-radius: 10px;
-  
 }
 
 /*/ querys /*/
 
 @media (min-width: 576px) {
+  .search {
+    width: 450px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -297,6 +355,10 @@ body::-webkit-scrollbar-thumb {
 
   td {
     font-size: 1rem;
+  }
+
+  .search {
+    width: 600px;
   }
 }
 
@@ -317,7 +379,7 @@ body::-webkit-scrollbar-thumb {
   }
 
   li a:hover {
-    color: rgb(233, 40, 120) !important;
+    color: #e92878 !important;
   }
 
   .card {
@@ -326,7 +388,7 @@ body::-webkit-scrollbar-thumb {
 
   .card:hover {
     transition: 200ms;
-    transform: scale(1.02);
+    transform: scale(1.01);
   }
 
   .details .card:hover {
@@ -340,13 +402,55 @@ body::-webkit-scrollbar-thumb {
   }
 
   .links a {
-   opacity: 0.2;
+    opacity: 0.2;
   }
 
   .links a:hover {
     transform: scale(1.05);
     transition: 200ms;
     opacity: 0.85;
+  }
+
+  html {
+    zoom: 80%;
+  }
+
+  .intro_upcoming {
+    height: 120vh;
+  }
+
+  .intro_upcoming div {
+    background-color: transparent;
+  }
+
+  .intro_upcoming p:hover {
+    transform: scale(1.03);
+    transition: 200ms;
+    text-decoration: underline;
+  }
+
+  .intro_past {
+    height: 120vh;
+    background-position: 80%;
+    background-size: 900px;
+  }
+
+  .intro_past div {
+    width: 100%;
+  }
+
+  .intro_past p:hover {
+    transform: scale(1.03);
+    transition: 200ms;
+    text-decoration: underline;
+  }
+
+  .search {
+    width: 850px;
+  }
+
+  .details .card {   
+    height: auto;    
   }
 }
 
@@ -356,7 +460,11 @@ body::-webkit-scrollbar-thumb {
   }
 
   .carousel-item {
-    height: 800px;
+    height: 1000px;
+  }
+
+  .details .card {   
+    height: 550px;    
   }
 }
 
@@ -364,4 +472,26 @@ body::-webkit-scrollbar-thumb {
   .formulario {
     width: 50%;
   }
+
+  .intro_past {
+    height: 120vh;
+    background-position: 80%;
+    background-size: 950px;
+  }
+
+  .intro_past div {
+    background-color: transparent;
+    width: auto;
+  }
+
+  .intro_past p:hover {
+    transform: scale(1.03);
+    transition: 200ms;
+    text-decoration: underline;
+  }
+
+  .details .card {   
+    height: 650px;    
+  }
+  
 }

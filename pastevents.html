@@ -51,27 +51,44 @@
         </nav>
     </header>
 
+    <section class="intro_past d-flex align-items-center p-5 bg-light">
+        <div class="d-flex flex-wrap p-3 rounded justify-content-center">
+            <h2 class="text-center">
+                See our past events<span class="primario">.</span>
+            </h2>
 
-    <section class="past_events p-1 p-md-5 bg-light">
-        <h2 class="text-center pt-3">Past events<span class="primario">.</span></h2>
-            
-        <div class="checksbox d-flex flex-column align-items-center my-4 justify-content-lg-around">
-            <form id="box_checksbox" class="d-flex flex-wrap my-3 justify-content-center">
-
-            </form>
-
-            <form class="d-flex justify-content-center py-3">
-                <label>
-                    <input type="search" class="search" name="search">
-                </label>
-                <input type="submit" class="button_submit" name="search" value="search">
-            </form>
-
-
-
-
+            <p class="text-center">
+                <a href="#events_past">Investigate all the events that passed through our organization 🠗</a>
+            </p>
         </div>
+    </section>
+
+
+    <section id="events_past" class="past_events p-1 p-md-5 bg-light">
+        <h2 class="text-center pt-3">Past events<span class="primario">.</span></h2>
+
+        <div class="checksbox d-flex flex-column flex-wrap align-items-center justify-content-lg-around">
+            <form id="box_checksbox" class="d-flex flex-wrap my-4 justify-content-center">
+
+            </form>
+        </div>
+
+
+        <form class="d-flex justify-content-center align-items-center py-1">
+            <label class="px-1">
+                <input type="text" class="search" id="search" placeholder="Search for name">
+            </label>
+            <div class="button_submit">
+                <img src="./assets/img/icons8-búsqueda.svg"/>
+            </div>
+        </form>
+
+
+
+
+
         <div id="container_cards" class="cont_cards_home d-flex flex-wrap justify-content-center p-4">
+
         </div>
     </section>
 
@@ -89,8 +106,10 @@
             <hr>
 
             <div class="text-center p_footer d-flex flex-column justify-content-center align-items-center">
-                <p class="text-uppercase m-0">Copyright © 2022 Amazing Events by Duarte, Ezequiel.</p>
-                <p class="text-uppercase m-0">MindHub Full stack MERN Cohort 36 </p>
+                <p class="m-0">
+                    Copyright © 2022 Amazing Events by Duarte, Ezequiel.
+                </p>
+                <p class="m-0">MindHub Full stack MERN Cohort 36</p>
             </div>
         </div>
 
