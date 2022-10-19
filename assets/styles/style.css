@@ -195,6 +195,20 @@ h2 {
   transform: scale(0.99);
 }
 
+#container_cards {
+  min-height: 500px;
+}
+
+#container_cards h2 {
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+
 /*/ empieza upcoming events /*/
 
 .intro_upcoming {

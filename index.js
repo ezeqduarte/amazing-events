@@ -171,19 +171,29 @@ function mixFilter() {
 
   let eventsFilterForText = eventosFiltrados.filter(evento => evento.name.toLowerCase().includes(filterForText.toLowerCase()))
 
+  
   if (categoriesChecked.length===0) {
 
-    container_cards.innerHTML = " ";
-    eventsFilterForText.forEach(printCards)
+    if (eventsFilterForText.length===0) {
+      container_cards.innerHTML = `<h2>No match found<span class="primario">.</span></h2>`
+    } else {
+
+      container_cards.innerHTML = " ";
+      eventsFilterForText.forEach(printCards)
+
+    }
+
+    
     
   } else {
 
     let eventsFilterForTextAndCheck = eventsFilterForText.filter(evento=> categoriesChecked.includes(evento.category))
     container_cards.innerHTML = " "
+
     if (eventsFilterForTextAndCheck.length===0) {
 
-      container_cards.innerHTML = `<h2>No match found</h2>`
-      
+      container_cards.innerHTML = `<h2>No match found<span class="primario">.</span></h2>`  
+
     } else {
 
       eventsFilterForTextAndCheck.forEach(printCards)
@@ -191,11 +201,6 @@ function mixFilter() {
     }
   
   }
-
-
-
-
-
 
 }
  
