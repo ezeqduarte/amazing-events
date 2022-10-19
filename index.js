@@ -143,7 +143,7 @@ if (document.title=== "Home" || document.title=== "Past Events" || document.titl
 
 let filterForText = "";
 
-container_search.addEventListener("change", (evento) => {
+container_search.addEventListener("keyup", (evento) => {
 
   filterForText = evento.target.value;
 
@@ -175,7 +175,8 @@ function mixFilter() {
   if (categoriesChecked.length===0) {
 
     if (eventsFilterForText.length===0) {
-      container_cards.innerHTML = `<h2>No match found<span class="primario">.</span></h2>`
+      container_cards.innerHTML = `<h2>No match found<span class="primario">.</span></h2>
+      <img class="img_error" src="./assets/img/undraw_not_found_re_44w9.svg">`
     } else {
 
       container_cards.innerHTML = " ";
@@ -192,7 +193,8 @@ function mixFilter() {
 
     if (eventsFilterForTextAndCheck.length===0) {
 
-      container_cards.innerHTML = `<h2>No match found<span class="primario">.</span></h2>`  
+      container_cards.innerHTML = `<h2>No match found<span class="primario">.</span></h2>
+      <img class="img_error" src="./assets/img/undraw_not_found_re_44w9.svg">`  
 
     } else {
 
