@@ -5,7 +5,7 @@ const currentDate = data.currentDate;
 /*/ Containers para DOM /*/
 let container_cards = document.getElementById("container_cards");
 let container_checkboxs = document.getElementById("box_checksbox");
-let containter_search = document.getElementById("search");
+let container_search = document.getElementById("search");
 
 /*/funcion para filtrar los eventos dependiendo de la pagina en la que este y de la current date /*/
 
@@ -55,7 +55,7 @@ function printCards(event) {
           </p>
       </div>  
       <div class="d-flex justify-content-end">
-          <a href="details.html" class="btn btn-primary">More information</a>
+          <a href="details.html?evento=${event._id}" class="btn boton_cards btn-primary">More information</a>
       </div>                  
     </div>
     
@@ -64,7 +64,56 @@ function printCards(event) {
 
 eventosFiltrados.forEach(printCards);
 
-/*/Array de categorias /*/
+/*/ function para imprimir cards details /*/
+
+let container_details = document.getElementById("container_card_details");
+
+function printCardDetails(evento) {
+  container_details.innerHTML = `
+  <div class="card card_details d-flex flex-column flex-xl-row">
+    <div class="foto_details"><img class="card-img-top" src="${evento.image}" alt=${evento.name}>
+    </div>
+    <div class="card-body px-md-5 py-md-4 d-flex flex-column justify-content-between align-items-center">
+      <h2 class="card-title pt-4 text-center">${evento.name}<span class="primario">.</span></h2>
+      <h3 class="card-text pt-4 text-center d-flex align-items-center">${evento.description}</h3>
+      <div class="d-flex flex-column flex-grow-1 gap-3 justify-content-center">
+      <h4 class="card-text d-flex">The date of the event is<span class="px-2 primario">:</span> ${evento.date}</h4>
+      <h4 class="card-text d-flex">It is an event related to<span class="px-2 primario">:</span> ${evento.category}</h4>
+      <h4 class="card-text d-flex">The event will take place in<span class="px-2 primario">:</span> ${evento.place}</h4>
+      <h4 class="card-text d-flex">It has a capacity of<span class="px-2 primario">:</span> ${evento.capacity} peoples</h4>
+      <h4 class="card-text d-flex">Assistance<span class="px-2 primario">:</span> ${evento.assistance}</h4>
+      <h4 class="card-text d-flex">Price<span class="px-2 primario">:</span> ${evento.price}$</h4>
+      </div>
+      </div>
+  </div>  
+  `;
+}
+
+
+
+function getEventDetails() {
+  console.log(location);
+  console.log(location.search);
+  console.log(location.search.slice(8));
+  let id = Number(location.search.slice(8));
+  let event = data.events.filter((event) => event._id === id);
+  event = event[0]
+  
+  console.log(event);
+  
+  printCardDetails(event);
+}
+
+
+
+if (document.title === "Details") {
+
+  getEventDetails()
+
+}
+
+
+/*/ array de categorias /*/
 
 let categoriesEvents = [...new Set(allEvents.map((event) => event.category))];
 
@@ -80,51 +129,52 @@ function createCheckbox(category) {
   `;
 }
 
+
+
+
+
+if (document.title=== "Home" || document.title=== "Past Events" || document.title=== "Upcoming Events") {
+
 /*/imprimi los checkboxs/*/
 
-categoriesEvents.forEach(createCheckbox);
+  categoriesEvents.forEach(createCheckbox);
+  
+/*/ arranco a filtrar por texto /*/
 
-/*/ Aca filtro por texto /*/
 
-let searchForText = "";
 
-containter_search.addEventListener("input", function (e) {
-  searchForText = e.target.value;
-  console.log(`searchForText adentro de la funcion: ${searchForText}`);
-  filtrado();
+container_search.addEventListener("change", (evento) => {
+  let filtradoPorTexto = evento.target.value;
+  let eventosFiltradosPorTexto = eventosFiltrados.filter((evento) =>
+    evento.name.toLowerCase().includes(filtradoPorTexto.toLowerCase())
+    );
+    console.log(filtradoPorTexto);
+  container_cards.innerHTML = " ";
+  eventosFiltradosPorTexto.forEach(printCards);
 });
 
-console.log(`searchForText afuera de la funcion: ${searchForText}`);
-
-/*/ aca filtro por checkboxs /*/
+/*/ arranco a filtrar por checkbox /*/
 
 let categoriesChecked = [];
 
 container_checkboxs.addEventListener("change", function (e) {
   if (e.target.checked) {
     categoriesChecked.push(e.target.value);
-  } else categoriesChecked = categoriesChecked.filter((value) => value != e.target.value);
-  console.log(`categoriesChecked adentro de la funcion: ${categoriesChecked}`);
-  filtrado();
-});
-
-console.log(`categoriesChecked afuera de la funcion: ${categoriesChecked}`);
-
-function filtrado() {
-  let eventsFilterPorTexto = eventosFiltrados.filter((evento) =>
-    evento.name.toLowerCase().includes(searchForText.toLowerCase())
-  );
-
-  container_cards.innerHTML = " ";
-
-  if (categoriesChecked.length === 0) {
-    eventsFilterPorTexto.forEach(printCards);
-    return;
+  } else {
+    let indice = categoriesChecked.indexOf(e.target.value);
+    categoriesChecked.splice(indice, 1);
   }
 
-  let eventFilterPorTodo = eventsFilterPorTexto.filter((evento) =>
+  let eventosChecked = eventosFiltrados.filter((evento) =>
     categoriesChecked.includes(evento.category)
   );
 
-  eventFilterPorTodo.forEach(printCards);
+  container_cards.innerHTML = " ";
+  eventosChecked.forEach(printCards);
+  console.log(categoriesChecked);
+});
+
+  console.log(categoriesChecked);
+
 }
+

@@ -27,11 +27,6 @@ html {
   border-radius: 150px;
 }
 
-.gotop img {
-  width: 50px;
-  transform: rotate(90deg);
-}
-
 footer {
   min-height: 17vh;
   width: 100%;
@@ -230,7 +225,7 @@ h2 {
   background-image: url("../img/162-1623995_tony-stark-iron-man-no-helmet-tony-stark.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 520px ;
+  background-size: 520px;
   height: 95vh;
 }
 
@@ -300,7 +295,7 @@ td {
 }
 
 .details .card {
-  width: 80% !important;
+  width: 80% !important; 
   border-radius: 45px !important;
   border-bottom-right-radius: 0px !important;
   border-top-left-radius: 0px !important;
@@ -324,6 +319,10 @@ h3 {
 
 .details .card-body {
   width: 100%;
+}
+
+.details .card-body div {
+width: 100%;
 }
 
 /*/ barra de scroll /*/
@@ -380,7 +379,7 @@ body::-webkit-scrollbar-thumb {
   }
 
   li a:hover {
-    color: rgb(233, 40, 120) !important;
+    color: #e92878 !important;
   }
 
   .card {
@@ -449,6 +448,10 @@ body::-webkit-scrollbar-thumb {
   .search {
     width: 850px;
   }
+
+  .details .card {   
+    height: auto;    
+  }
 }
 
 @media (min-width: 1200px) {
@@ -458,6 +461,10 @@ body::-webkit-scrollbar-thumb {
 
   .carousel-item {
     height: 1000px;
+  }
+
+  .details .card {   
+    height: 550px;    
   }
 }
 
@@ -483,5 +490,8 @@ body::-webkit-scrollbar-thumb {
     text-decoration: underline;
   }
 
-
+  .details .card {   
+    height: 650px;    
+  }
+  
 }
