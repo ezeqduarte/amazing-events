@@ -141,40 +141,64 @@ if (document.title=== "Home" || document.title=== "Past Events" || document.titl
   
 /*/ arranco a filtrar por texto /*/
 
-
+let filterForText = "";
 
 container_search.addEventListener("change", (evento) => {
-  let filtradoPorTexto = evento.target.value;
-  let eventosFiltradosPorTexto = eventosFiltrados.filter((evento) =>
-    evento.name.toLowerCase().includes(filtradoPorTexto.toLowerCase())
-    );
-    console.log(filtradoPorTexto);
-  container_cards.innerHTML = " ";
-  eventosFiltradosPorTexto.forEach(printCards);
+
+  filterForText = evento.target.value;
+
+  mixFilter()
+
 });
 
 /*/ arranco a filtrar por checkbox /*/
 
 let categoriesChecked = [];
 
-container_checkboxs.addEventListener("change", function (e) {
+container_checkboxs.addEventListener("change", (e) => {
   if (e.target.checked) {
     categoriesChecked.push(e.target.value);
   } else {
     let indice = categoriesChecked.indexOf(e.target.value);
     categoriesChecked.splice(indice, 1);
   }
+  
+  mixFilter()
 
-  let eventosChecked = eventosFiltrados.filter((evento) =>
-    categoriesChecked.includes(evento.category)
-  );
-
-  container_cards.innerHTML = " ";
-  eventosChecked.forEach(printCards);
-  console.log(categoriesChecked);
 });
 
-  console.log(categoriesChecked);
+function mixFilter() {
+
+  let eventsFilterForText = eventosFiltrados.filter(evento => evento.name.toLowerCase().includes(filterForText.toLowerCase()))
+
+  if (categoriesChecked.length===0) {
+
+    container_cards.innerHTML = " ";
+    eventsFilterForText.forEach(printCards)
+    
+  } else {
+
+    let eventsFilterForTextAndCheck = eventsFilterForText.filter(evento=> categoriesChecked.includes(evento.category))
+    container_cards.innerHTML = " "
+    if (eventsFilterForTextAndCheck.length===0) {
+
+      container_cards.innerHTML = `<h2>No match found</h2>`
+      
+    } else {
+
+      eventsFilterForTextAndCheck.forEach(printCards)
+
+    }
+  
+  }
+
+
+
+
+
+
+}
+ 
 
 }
 
