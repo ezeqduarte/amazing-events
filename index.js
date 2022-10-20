@@ -1,4 +1,4 @@
-/*/ Eventos de la api y data de filtrado /*/
+/*/ Eventos y fecha de information /*/
 const allEvents = data.events;
 const currentDate = data.currentDate;
 
@@ -89,37 +89,33 @@ function printCardDetails(evento) {
   `;
 }
 
-
+/*/ funcion para obtener el id del evento, y que me imprima en details ese evento obtenido /*/
 
 function getEventDetails() {
-  console.log(location);
-  console.log(location.search);
+  /* console.log(location);
+  console.log(location.search); */
   console.log(location.search.slice(8));
   let id = Number(location.search.slice(8));
   let event = data.events.filter((event) => event._id === id);
-  event = event[0]
-  
+  event = event[0];
+
   console.log(event);
-  
+
   printCardDetails(event);
 }
 
-
-
 if (document.title === "Details") {
-
-  getEventDetails()
-
+  getEventDetails();
 }
 
-
-/*/ array de categorias /*/
+/*/ array de las categorias de los eventos /*/
 
 let categoriesEvents = [...new Set(allEvents.map((event) => event.category))];
 
-/*/ funcion que me de un array con las categorias de los eventos /*/
+/*/ funcion que me crea un array con las categorias de los eventos /*/
 
 function createCheckbox(category) {
+
   container_checkboxs.innerHTML += `
   
   <label class="d-flex  mx-2">${category}
@@ -127,87 +123,76 @@ function createCheckbox(category) {
   </label>
   
   `;
+
 }
 
-
-
-
-
-if (document.title=== "Home" || document.title=== "Past Events" || document.title=== "Upcoming Events") {
-
-/*/imprimi los checkboxs/*/
+if (
+  document.title === "Home" ||
+  document.title === "Past Events" ||
+  document.title === "Upcoming Events"
+) {
+  /*/imprimi los checkboxs/*/
 
   categoriesEvents.forEach(createCheckbox);
-  
-/*/ arranco a filtrar por texto /*/
 
-let filterForText = "";
+  /*/ arranco a filtrar por texto /*/
 
-container_search.addEventListener("keyup", (evento) => {
+  let filterForText = "";
 
-  filterForText = evento.target.value;
+  container_search.addEventListener("keyup", (evento) => {
 
-  mixFilter()
+    filterForText = evento.target.value;
 
-});
+    mixFilter();
 
-/*/ arranco a filtrar por checkbox /*/
+  });
 
-let categoriesChecked = [];
+  /*/ arranco a filtrar por checkbox /*/
 
-container_checkboxs.addEventListener("change", (e) => {
-  if (e.target.checked) {
-    categoriesChecked.push(e.target.value);
-  } else {
-    let indice = categoriesChecked.indexOf(e.target.value);
-    categoriesChecked.splice(indice, 1);
-  }
-  
-  mixFilter()
+  let categoriesChecked = [];
 
-});
-
-function mixFilter() {
-
-  let eventsFilterForText = eventosFiltrados.filter(evento => evento.name.toLowerCase().includes(filterForText.toLowerCase()))
-
-  
-  if (categoriesChecked.length===0) {
-
-    if (eventsFilterForText.length===0) {
-      container_cards.innerHTML = `<h2>No match found<span class="primario">.</span></h2>
-      <img class="img_error" src="./assets/img/undraw_not_found_re_44w9.svg">`
+  container_checkboxs.addEventListener("change", (e) => {
+    
+    if (e.target.checked) {
+      categoriesChecked.push(e.target.value);
     } else {
+      let indice = categoriesChecked.indexOf(e.target.value);
+      categoriesChecked.splice(indice, 1);
+    }
 
+    mixFilter();    
+
+  });
+
+  /*/ funcion que me filtra los eventos /*/
+
+  function mixFilter() {
+    let eventsFilterForText = eventosFiltrados.filter((evento) =>
+      evento.name.toLowerCase().includes(filterForText.toLowerCase())
+    );
+
+    if (categoriesChecked.length === 0) {
+      if (eventsFilterForText.length === 0) {
+        container_cards.innerHTML = `<h2>No match found<span class="primario">.</span></h2>
+      <img class="img_error" src="./assets/img/undraw_not_found_re_44w9.svg">`;
+      } else {
+        container_cards.innerHTML = " ";
+        eventsFilterForText.forEach(printCards);
+      }
+    } else {
+      let eventsFilterForTextAndCheck = eventsFilterForText.filter((evento) =>
+        categoriesChecked.includes(evento.category)
+      );
       container_cards.innerHTML = " ";
-      eventsFilterForText.forEach(printCards)
 
+      if (eventsFilterForTextAndCheck.length === 0) {
+        container_cards.innerHTML = `<h2>No match found<span class="primario">.</span></h2>
+      <img class="img_error" src="./assets/img/undraw_not_found_re_44w9.svg">`;
+      } else {
+        eventsFilterForTextAndCheck.forEach(printCards);
+      }
     }
-
-    
-    
-  } else {
-
-    let eventsFilterForTextAndCheck = eventsFilterForText.filter(evento=> categoriesChecked.includes(evento.category))
-    container_cards.innerHTML = " "
-
-    if (eventsFilterForTextAndCheck.length===0) {
-
-      container_cards.innerHTML = `<h2>No match found<span class="primario">.</span></h2>
-      <img class="img_error" src="./assets/img/undraw_not_found_re_44w9.svg">`  
-
-    } else {
-
-      eventsFilterForTextAndCheck.forEach(printCards)
-
-    }
-  
   }
-
 }
- 
-
-}
-
 
 
