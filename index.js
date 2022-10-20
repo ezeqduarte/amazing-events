@@ -40,7 +40,7 @@ function printCards(event) {
           <h5 class="card-title text-center">${event.name}</h5>
       </div>
       <div class="card-body d-flex flex-column justify-content-center">
-          <p class="card-text d-flex justify-content-center align-items-center description py-2 text-center texto-cards">${event.description}</p>
+          <p class="card-text flex-grow-1 d-flex justify-content-center align-items-center description py-2 text-center texto-cards">${event.description}</p>
           <p class="card-text">
               <span class="datos-cards">Date:</span>
               <span class="datos-datos-cards">${event.date.slice(0, -14)}</span>
@@ -194,14 +194,16 @@ if (
 
 async function getData() {
  
+/*       let data = await fetch ("https://mind-hub.up.railway.app/amazing")*/
       let data = await fetch ("https://mind-hub.up.railway.app/amazing")
       data = await data.json()
       let events = data.events
+      let date = data.date
+      console.log(date);
       console.log(events);
 
-      if (document.title==="Home"){
-        events.forEach(printCards)
-      }
+      let eventsFiltered= filter(events, date)
+      eventsFiltered.forEach(printCards)
 
 
 }

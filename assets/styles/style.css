@@ -130,10 +130,11 @@ h2 {
 }
 
 .card {
+  height: 620px !important;
   border-top-right-radius: 25px !important;
   border-bottom-left-radius: 25px !important;
   border-bottom-right-radius: 0px !important;
-  width: 23rem !important;
+  width: 290px !important;
   --bs-card-border-width: 0px !important;
   --bs-card-title-spacer-y: 0rem !important;
 }
@@ -368,6 +369,9 @@ body::-webkit-scrollbar-thumb {
   .search {
     width: 450px;
   }
+
+  .card {
+    width: 350px !important;
 }
 
 @media (min-width: 768px) {
@@ -474,6 +478,10 @@ body::-webkit-scrollbar-thumb {
   .details .card {   
     height: auto;    
   }
+
+  .card {
+    height: 580px !important;
+}
 }
 
 @media (min-width: 1200px) {
