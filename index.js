@@ -39,27 +39,30 @@ function printCards(event) {
           <img src="${event.image}" alt="${event.image}">
           <h5 class="card-title text-center">${event.name}</h5>
       </div>
-      <div class="card-body d-flex flex-column justify-content-center">
-          <p class="card-text flex-grow-1 d-flex justify-content-center align-items-center description py-2 text-center texto-cards">${event.description}</p>
+      <div class="card-body d-flex flex-column justify-content-between">
+          <p class="card-text py-2 text-center texto-cards">${event.description}</p>
           <p class="card-text">
               <span class="datos-cards">Date:</span>
-              <span class="datos-datos-cards">${event.date.slice(0, -14)}</span>
-          </p>                                            
-          
-          <p class="card-text d-flex align-items-center">
-                <span class="datos-cards">Price:</span>
-                <span class="datos-datos-cards"> $ ${event.price}</span>
+              <span class="datos-datos-cards">${event.date}</span>
+          </p>
+          <p class="card-text">
+              <span class="datos-cards">Category:</span>
+              <span class="datos-datos-cards">${event.category}</span>
+          </p>                                      
+          <p class="card-text">
+            <span class="datos-cards">Price: </span>
+            <span class="datos-datos-cards"> $${event.price}</span>
           </p>
       </div>  
-      <div class="d-flex justify-content-end align-items-center">
-      <a href="details.html?evento=${event._id}" class="btn boton_cards btn-primary">More information</a>
+      <div class="d-flex justify-content-end">
+          <a href="details.html?evento=${event._id}" class="btn boton_cards btn-primary">More information</a>
       </div>                  
     </div>
     
     `;
 }
 
-/* eventosFiltrados.forEach(printCards); */
+eventosFiltrados.forEach(printCards);
 
 /*/ function para imprimir cards details /*/
 
@@ -192,20 +195,4 @@ if (
   }
 }
 
-async function getData() {
- 
-/*       let data = await fetch ("https://mind-hub.up.railway.app/amazing")*/
-      let data = await fetch ("https://mind-hub.up.railway.app/amazing")
-      data = await data.json()
-      let events = data.events
-      let date = data.date
-      console.log(date);
-      console.log(events);
 
-      let eventsFiltered= filter(events, date)
-      eventsFiltered.forEach(printCards)
-
-
-}
-
-getData()
