@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 
-.principal,
 .upcoming_events,
 .past_events,
 .stats,
@@ -13,6 +12,29 @@
  {
   min-height: 99.6vh;
 }
+
+.principal {  
+  min-height: 110vh;
+}
+
+.principal h2 {
+  font-size: 5rem !important;
+  font-weight: 300 !important;
+}
+
+#typed {
+  font-size: 14rem !important;
+  font-weight: 600 !important;
+}
+
+.principal img {
+  width: 65px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 50px;
+  padding: 10px;
+  border-radius: 555px;
+}
+
+
 
 .details {
   min-height: 98.8vh;
@@ -31,6 +53,8 @@ html {
   border-radius: 150px;
 }
 
+
+
 footer {
   min-height: 17vh;
   width: 100%;
@@ -47,6 +71,11 @@ hr {
 
 .primario {
   color: rgb(233, 40, 104) !important;
+}
+
+.primario_cursor {
+  font-size: 14rem !important;
+  color: rgb(233, 40, 104)
 }
 
 .carousel-item img {
