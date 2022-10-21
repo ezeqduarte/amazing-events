@@ -9,9 +9,13 @@
 .upcoming_events,
 .past_events,
 .stats,
-.contact,
+.contact
+ {
+  min-height: 99.6vh;
+}
+
 .details {
-  min-height: 99.4vh;
+  min-height: 98.8vh;
 }
 
 html {
@@ -82,7 +86,7 @@ nav ul li a {
 
 nav .active {
   background-color: rgb(233, 40, 120);
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 5px 50px;
   color: white !important;
 }
@@ -112,6 +116,7 @@ h2 {
 .checksbox div {
   width: 40%;
 }
+
 
 .search {
   padding: 10px;
@@ -158,9 +163,8 @@ h2 {
 
 .texto-cards {
   color: rgb(52, 55, 56);
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.125rem;
-
   line-height: 25px;
 }
 
@@ -171,7 +175,7 @@ h2 {
 .datos-datos-cards {
   color: rgb(233, 40, 104);
   line-height: 1px;
-  font-size: larger;
+  font-size: 1.5rem;
   font-weight: 300;
 }
 
@@ -212,6 +216,10 @@ h2 {
   align-items: center;
   text-align: center;
 
+}
+
+.card-text {
+  
 }
 
 .img_error {
@@ -371,7 +379,7 @@ body::-webkit-scrollbar-thumb {
   }
 
   .card {
-    width: 350px !important;
+    width: 350px !important;}
 }
 
 @media (min-width: 768px) {
@@ -480,7 +488,7 @@ body::-webkit-scrollbar-thumb {
   }
 
   .card {
-    height: 580px !important;
+    height: 530px !important;
 }
 }
 
