@@ -438,14 +438,22 @@ body::-webkit-scrollbar-thumb {
     border-radius: 5px;
     padding: 0px;
     color: white !important;
-  }
-
-  .active:hover {
-    color: white !important;
-  }
+  }  
 
   li a:hover {
     color: #e92878 !important;
+  }
+
+  nav .active {
+    background-color: transparent;
+    border-radius: 0px;    
+    border-bottom: #e92878 1px solid;
+    padding: 5px 50px;
+    color: black !important;
+  }
+
+  nav .active:hover {
+    color: black !important;
   }
 
   .card {
