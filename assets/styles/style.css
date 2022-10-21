@@ -8,24 +8,10 @@
 .upcoming_events,
 .past_events,
 .stats,
-.contact
- {
+.contact {
   min-height: 99.6vh;
 }
 
-.principal {  
-  min-height: 110vh;
-}
-
-.principal h2 {
-  font-size: 5rem !important;
-  font-weight: 300 !important;
-}
-
-#typed {
-  font-size: 14rem !important;
-  font-weight: 600 !important;
-}
 
 .principal img {
   width: 65px;
@@ -73,8 +59,22 @@ hr {
   color: rgb(233, 40, 104) !important;
 }
 
+.principal {
+  min-height: 90vh;
+}
+
+.principal h2 {
+  font-size: 3rem !important;
+  font-weight: 300 !important;
+}
+
+#typed {
+  font-size: 4rem !important;
+  font-weight: 600 !important;
+}
+
 .primario_cursor {
-  font-size: 14rem !important;
+  font-size: 4rem !important;
   color: rgb(233, 40, 104)
 }
 
@@ -135,7 +135,7 @@ h2 {
   width: 100%;
   font-weight: bolder !important;
   letter-spacing: 0.055em;
-  font-size: 1.875rem !important ;
+  font-size: 1.875rem !important;
 }
 
 .checksbox {
@@ -171,6 +171,12 @@ h2 {
   width: 290px !important;
   --bs-card-border-width: 0px !important;
   --bs-card-title-spacer-y: 0rem !important;
+}
+
+.card-description {
+  font-weight: 300 !important;
+  font-size: larger !important;
+  letter-spacing: 0.005em;
 }
 
 .card_events {
@@ -351,7 +357,7 @@ td {
 }
 
 .details .card {
-  width: 80% !important; 
+  width: 80% !important;
   border-radius: 45px !important;
   border-bottom-right-radius: 0px !important;
   border-top-left-radius: 0px !important;
@@ -378,7 +384,7 @@ h3 {
 }
 
 .details .card-body div {
-width: 100%;
+  width: 100%;
 }
 
 /*/ barra de scroll /*/
@@ -404,7 +410,8 @@ body::-webkit-scrollbar-thumb {
   }
 
   .card {
-    width: 350px !important;}
+    width: 350px !important;
+  }
 }
 
 @media (min-width: 768px) {
@@ -508,13 +515,32 @@ body::-webkit-scrollbar-thumb {
     width: 850px;
   }
 
-  .details .card {   
-    height: auto;    
+  .details .card {
+    height: auto;
   }
 
   .card {
     height: 530px !important;
-}
+  }
+
+  .principal {
+    min-height: 110vh;
+  }
+
+  .principal h2 {
+    font-size: 5rem !important;
+    font-weight: 300 !important;
+  }
+
+  #typed {
+    font-size: 14rem !important;
+    font-weight: 600 !important;
+  }
+
+  .primario_cursor {
+    font-size: 14rem !important;
+    color: rgb(233, 40, 104)
+  }
 }
 
 @media (min-width: 1200px) {
@@ -526,8 +552,8 @@ body::-webkit-scrollbar-thumb {
     height: 1000px;
   }
 
-  .details .card {   
-    height: 550px;    
+  .details .card {
+    height: 550px;
   }
 }
 
@@ -553,8 +579,8 @@ body::-webkit-scrollbar-thumb {
     text-decoration: underline;
   }
 
-  .details .card {   
-    height: 650px;    
+  .details .card {
+    height: 650px;
   }
-  
+
 }

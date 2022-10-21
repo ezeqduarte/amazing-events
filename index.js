@@ -46,11 +46,11 @@ function printCards(event) {
           <p class="card-text m-0 datos-cards text-center">
               ${event.date.slice(0,10)}<span class="primario">.</span>
           </p>   
-          <p class="card-text flex-grow-1 d-flex justify-content-center align-items-center texto-cards">${event.description}</p>
+          <p class="card-description flex-grow-1 d-flex justify-content-center align-items-center texto-cards">${event.description}</p>
           
           </div>  
       <div class="d-flex justify-content-between">
-      <div class="d-flex align-items-center justify-content-center flex-grow-1 ">   
+      <div class="d-flex align-items-center justify-content-center">   
           <p class="px-3 card-text d-flex align-items-center justify-content-center gap-2 ">
             <span class="datos-cards">Price </span>
             <span class="datos-datos-cards"> ${event.price}$</span>
