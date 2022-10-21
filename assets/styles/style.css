@@ -9,7 +9,7 @@
 .past_events,
 .stats,
 .contact {
-  min-height: 99.6vh;
+  min-height: 96.3vh;
 }
 
 
@@ -23,7 +23,7 @@
 
 
 .details {
-  min-height: 98.8vh;
+  min-height: 95.5vh;
 }
 
 html {
@@ -450,6 +450,7 @@ body::-webkit-scrollbar-thumb {
     border-bottom: #e92878 1px solid;
     padding: 5px 50px;
     color: black !important;
+    font-weight: bolder;
   }
 
   nav .active:hover {
