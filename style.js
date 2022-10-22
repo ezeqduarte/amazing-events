@@ -1,9 +1,9 @@
 const typed = new Typed('.typed', {
 
     strings: [
-        "<i>Bands</i>",
-        "<i>Events</i>",
-        "<i>Artists</i>"
+        `<i>Bands<span class="primario">.</span></i>`,
+		`<i>Events<span class="primario">.</span></i>`,
+		`<i>Artists<span class="primario">.</span></i>`,
         ],
 
    // stringsElement: '#cadenas-texto', // ID del elemento que contiene cadenas de texto a mostrar.
@@ -16,6 +16,6 @@ const typed = new Typed('.typed', {
 	loop: true, // Repetir el array de strings
 	loopCount: false, // Cantidad de veces a repetir el array.  false = infinite
 	showCursor: true, // Mostrar cursor palpitanto
-	cursorChar: '<i class="primario_cursor">.</i>', // Caracter para el cursor
+	cursorChar: '<span class="primario_cursor">|</span>', // Caracter para el cursor
 	contentType: 'html', // 'html' o 'null' para texto sin formato
 })
