@@ -46,9 +46,8 @@ function printCards(event) {
           <p class="card-text m-0 datos-cards text-center">
               ${event.date.slice(0, 10)}
           </p>   
-          <p class="card-description flex-grow-1 d-flex justify-content-center align-items-center texto-cards">${
-            event.description
-          }</p>
+          <p class="card-description flex-grow-1 d-flex justify-content-center align-items-center texto-cards">${event.description
+    }</p>
           
           </div>  
       <div class="d-flex justify-content-between">
@@ -58,9 +57,8 @@ function printCards(event) {
             <span class="datos-datos-cards"> ${event.price}$</span>
           </p>
           </div>
-          <a href="details.html?evento=${
-            event.id
-          }" class="btn boton_cards btn-primary">More information</a>
+          <a href="details.html?evento=${event.id
+    }" class="btn boton_cards btn-primary">More information</a>
       </div>                  
     </div>
     
@@ -75,49 +73,26 @@ let container_details = document.getElementById("container_card_details");
 
 function printCardDetails(evento) {
   container_details.innerHTML = `
-  <div class="card card_details d-flex flex-column flex-xl-row">
-    <div class="foto_details"><img class="card-img-top" src="${evento.image}" alt=${evento.name}>
+  <a href="javascript:history.back()"><img class="arrow_down_details mb-5" src="./assets/img/icons8-abajo.gif" alt="arrow_down"></a>
+  <div class="card_details d-flex pb-5 py-4 flex-column flex-lg-column-reverse align-items-md-center flex-xl-row-reverse">
+    <div class="foto_details d-lg-flex justify-content-center"><img class="card-img-details" src="${evento.image}" alt=${evento.name}>
     </div>
-    <div class="card-body px-md-5 py-md-4 d-flex flex-column justify-content-between align-items-center">
+    <div class="card_body_details px-md-5 py-md-4 pb-lg-5 flex-grow-1 d-flex flex-column justify-content-evenly align-items-start">
       <h2 class="card-title pt-4 text-center">${evento.name}<span class="primario">.</span></h2>
-      <h3 class="card-text pt-4 text-center d-flex align-items-center">${evento.description}</h3>
-      <div class="d-flex flex-column flex-grow-1 gap-3 justify-content-center">
-      <h4 class="card-text d-flex">The date of the event is<span class="px-2 primario">:</span> ${evento.date}</h4>
-      <h4 class="card-text d-flex">It is an event related to<span class="px-2 primario">:</span> ${evento.category}</h4>
-      <h4 class="card-text d-flex">The event will take place in<span class="px-2 primario">:</span> ${evento.place}</h4>
-      <h4 class="card-text d-flex">It has a capacity of<span class="px-2 primario">:</span> ${evento.capacity} peoples</h4>
-      <h4 class="card-text d-flex">Assistance<span class="px-2 primario">:</span> ${evento.assistance}</h4>
-      <h4 class="card-text d-flex">Price<span class="px-2 primario">:</span> ${evento.price}$</h4>
+      <h3 class="card-text pt-4 p-sm-5 text-center">${evento.description}</h3>
+      <div class="d-flex flex-column gap-3 px-3 justify-content-center">
+        <h4 class="card-text">The date of the event is <span class="bold"> ${evento.date.slice(0,10)}</span><span class="bold primario">.</span> </h4>
+        <h4 class="card-text">This event belongs to the <span class="bold"> ${evento.category} category</span><span class="bold primario">.</span> </h4>
+        <h4 class="card-text">The event will take place in <span class="bold"> ${evento.place}</span><span class="bold primario">.</span> </h4>
+        <h4 class="card-text">It has a capacity of <span class="bold"> ${evento.capacity} peoples</span><span class="bold primario">.</span> </h4>      
+        <h4 class="card-text">The price of the event is <span class="bold"> ${evento.price}$</span><span class="bold primario">.</span> </h4>
       </div>
-      </div>
+    </div>
   </div>  
   `;
-}
+} 
 
-/*/ funcion para obtener el id del evento, y que me imprima en details ese evento obtenido /*/
-
-function getEventDetails() {
-  /* console.log(location);
-  console.log(location.search); */
-  console.log(location.search.slice(8));
-  let id = Number(location.search.slice(7));
-  let event = data.events.filter((event) => event._id === id);
-  event = event[0];
-
-  console.log(event);
-
-  printCardDetails(event);
-}
-
-if (document.title === "Details") {
-  getEventDetails();
-}
-
-/* / array de las categorias de los eventos /
-
-let categoriesEvents = [...new Set(allEvents.map((event) => event.category))];
-
-/ funcion que me crea un array con las categorias de los eventos /
+// funcion que me crea un array con las categorias de los eventos
 
 function createCheckbox(category) {
   container_checkboxs.innerHTML += `
@@ -129,58 +104,61 @@ function createCheckbox(category) {
   `;
 }
 
-if (
-  document.title === "Home" ||
-  document.title === "Past Events" ||
-  document.title === "Upcoming Events"
-) {
-  /imprimi los checkboxs/
-
-  categoriesEvents.forEach(createCheckbox);
-
-  
-} */
-
 async function getData() {
+  // capturo la api
   let data = await fetch("https://mind-hub.up.railway.app/amazing");
+  //paso a json la data
   data = await data.json();
+  // declaro events y date
   let events = data.events;
   let date = data.date;
-  console.log(date);
-  console.log(events);
+
+  //con mi funcion filter filtre los eventos de la api y por cada uno los imprimi
 
   let eventsFiltered = filter(events, date);
   eventsFiltered.forEach(printCards);
 
   console.log("-------------------------------------------------------------");
 
-  /*/ array de las categorias de los eventos /*/
+  //capturo todas las categorias de los arrays
 
   let categoriesEvents = [...new Set(events.map((event) => event.category))];
-
-  /*/ funcion que me crea un array con las categorias de los eventos /*/
-
-  function createCheckbox(category) {
-    container_checkboxs.innerHTML += `
-  
-  <label class="d-flex  mx-2">${category}
-    <input type="checkbox" class="mx-2 form-check-input" value="${category}">
-  </label>
-  
-  `;
-  }
 
   if (
     document.title === "Home" ||
     document.title === "Past Events" ||
     document.title === "Upcoming Events"
   ) {
-    /*/imprimi los checkboxs/*/
-
+    // imprimo todos los checkboxs
     categoriesEvents.forEach(createCheckbox);
   }
 
   console.log("-------------------------------------------------------------");
+
+  //capturo el id del evento y despues imprimo la card
+
+  function getEventDetails() {
+    console.log(location);
+    console.log(location.search);
+    console.log(location.search.slice(8));
+    let id = location.search.slice(8);
+    console.log(id);
+    let event = data.events.filter((event) => event.id === id);
+    event = event[0]; 
+    console.log(event);  
+    printCardDetails(event);
+  }
+  
+  if (document.title === "Details") {
+    getEventDetails();
+  }
+
+
+  console.log("-------------------------------------------------------------");
+
+
+
+  //filtros cruzados
 
   let filterForText = "";
 
@@ -205,7 +183,7 @@ async function getData() {
     mixFilter();
   });
 
-  /*/ funcion que me filtra los eventos /*/
+  // funcion que me filtra los eventos
 
   function mixFilter() {
     let eventsFilterForText = eventsFiltered.filter((evento) =>
