@@ -79,7 +79,7 @@ function printCardDetails(evento) {
     </div>
     <div class="card_body_details px-md-5 py-md-4 pb-lg-5 flex-grow-1 d-flex flex-column justify-content-evenly align-items-start">
       <h2 class="card-title pt-4 text-center">${evento.name}<span class="primario">.</span></h2>
-      <h3 class="card-text pt-4 p-sm-5 text-center">${evento.description}</h3>
+      <h3 class="card-text p-4 p-sm-5 text-center">${evento.description}</h3>
       <div class="d-flex flex-column gap-3 px-3 justify-content-center">
         <h4 class="card-text">The date of the event is <span class="bold"> ${evento.date.slice(0,10)}</span><span class="bold primario">.</span> </h4>
         <h4 class="card-text">This event belongs to the <span class="bold"> ${evento.category} category</span><span class="bold primario">.</span> </h4>
