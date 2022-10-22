@@ -10,14 +10,17 @@
 .stats,
 .contact {
   min-height: 96.3vh;
+  position: relative;
 }
 
 
-.principal img {
+.arrow_down {
   width: 65px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 50px;
+  box-shadow: rgba(0, 0, 0, 0.158) 0px 10px 50px;
   padding: 10px;
   border-radius: 555px;
+  position: absolute;
+  bottom: 0px;
 }
 
 
@@ -61,6 +64,7 @@ hr {
 
 .principal {
   min-height: 90vh;
+  position: relative;
 }
 
 .principal h2 {
@@ -94,12 +98,13 @@ hr {
   color: white;
 }
 
-nav {
-  box-shadow: rgba(141, 146, 151, 0.082) 0px 8px 24px;
-  min-height: 5vh;
+.navbar-collapse {
+  flex-grow: 0 !important;
 }
 
+
 nav {
+  box-shadow: rgba(141, 146, 151, 0.082) 0px 8px 24px;
   min-height: 7vh;
 }
 
@@ -241,6 +246,18 @@ h2 {
 
 #container_cards {
   min-height: 500px;
+}
+
+.form-check-input:checked {
+
+ background-color: #e92878 !important;
+ border-radius: 50px !important;
+ border: none !important;
+
+}
+
+.form-check-input {
+  border-radius: 50px !important;
 }
 
 #container_cards h2 {
@@ -539,6 +556,7 @@ body::-webkit-scrollbar-thumb {
   .principal h2 {
     font-size: 5rem !important;
     font-weight: 300 !important;
+    /* text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.527); */
   }
 
   #typed {

@@ -44,9 +44,11 @@ function printCards(event) {
       ${event.category}<span class="primario">.</span>
   </p>                              
           <p class="card-text m-0 datos-cards text-center">
-              ${event.date.slice(0,10)}<span class="primario">.</span>
+              ${event.date.slice(0, 10)}
           </p>   
-          <p class="card-description flex-grow-1 d-flex justify-content-center align-items-center texto-cards">${event.description}</p>
+          <p class="card-description flex-grow-1 d-flex justify-content-center align-items-center texto-cards">${
+            event.description
+          }</p>
           
           </div>  
       <div class="d-flex justify-content-between">
@@ -56,7 +58,9 @@ function printCards(event) {
             <span class="datos-datos-cards"> ${event.price}$</span>
           </p>
           </div>
-          <a href="details.html?evento=${event._id}" class="btn boton_cards btn-primary">More information</a>
+          <a href="details.html?evento=${
+            event.id
+          }" class="btn boton_cards btn-primary">More information</a>
       </div>                  
     </div>
     
@@ -96,7 +100,7 @@ function getEventDetails() {
   /* console.log(location);
   console.log(location.search); */
   console.log(location.search.slice(8));
-  let id = Number(location.search.slice(8));
+  let id = Number(location.search.slice(7));
   let event = data.events.filter((event) => event._id === id);
   event = event[0];
 
@@ -109,14 +113,13 @@ if (document.title === "Details") {
   getEventDetails();
 }
 
-/*/ array de las categorias de los eventos /*/
+/* / array de las categorias de los eventos /
 
 let categoriesEvents = [...new Set(allEvents.map((event) => event.category))];
 
-/*/ funcion que me crea un array con las categorias de los eventos /*/
+/ funcion que me crea un array con las categorias de los eventos /
 
 function createCheckbox(category) {
-
   container_checkboxs.innerHTML += `
   
   <label class="d-flex  mx-2">${category}
@@ -124,7 +127,6 @@ function createCheckbox(category) {
   </label>
   
   `;
-
 }
 
 if (
@@ -132,20 +134,60 @@ if (
   document.title === "Past Events" ||
   document.title === "Upcoming Events"
 ) {
-  /*/imprimi los checkboxs/*/
+  /imprimi los checkboxs/
 
   categoriesEvents.forEach(createCheckbox);
 
-  /*/ arranco a filtrar por texto /*/
+  
+} */
+
+async function getData() {
+  let data = await fetch("https://mind-hub.up.railway.app/amazing");
+  data = await data.json();
+  let events = data.events;
+  let date = data.date;
+  console.log(date);
+  console.log(events);
+
+  let eventsFiltered = filter(events, date);
+  eventsFiltered.forEach(printCards);
+
+  console.log("-------------------------------------------------------------");
+
+  /*/ array de las categorias de los eventos /*/
+
+  let categoriesEvents = [...new Set(events.map((event) => event.category))];
+
+  /*/ funcion que me crea un array con las categorias de los eventos /*/
+
+  function createCheckbox(category) {
+    container_checkboxs.innerHTML += `
+  
+  <label class="d-flex  mx-2">${category}
+    <input type="checkbox" class="mx-2 form-check-input" value="${category}">
+  </label>
+  
+  `;
+  }
+
+  if (
+    document.title === "Home" ||
+    document.title === "Past Events" ||
+    document.title === "Upcoming Events"
+  ) {
+    /*/imprimi los checkboxs/*/
+
+    categoriesEvents.forEach(createCheckbox);
+  }
+
+  console.log("-------------------------------------------------------------");
 
   let filterForText = "";
 
   container_search.addEventListener("keyup", (evento) => {
-
     filterForText = evento.target.value;
 
     mixFilter();
-
   });
 
   /*/ arranco a filtrar por checkbox /*/
@@ -153,7 +195,6 @@ if (
   let categoriesChecked = [];
 
   container_checkboxs.addEventListener("change", (e) => {
-    
     if (e.target.checked) {
       categoriesChecked.push(e.target.value);
     } else {
@@ -161,14 +202,13 @@ if (
       categoriesChecked.splice(indice, 1);
     }
 
-    mixFilter();    
-
+    mixFilter();
   });
 
   /*/ funcion que me filtra los eventos /*/
 
   function mixFilter() {
-    let eventsFilterForText = eventosFiltrados.filter((evento) =>
+    let eventsFilterForText = eventsFiltered.filter((evento) =>
       evento.name.toLowerCase().includes(filterForText.toLowerCase())
     );
 
@@ -184,6 +224,7 @@ if (
       let eventsFilterForTextAndCheck = eventsFilterForText.filter((evento) =>
         categoriesChecked.includes(evento.category)
       );
+
       container_cards.innerHTML = " ";
 
       if (eventsFilterForTextAndCheck.length === 0) {
@@ -196,20 +237,4 @@ if (
   }
 }
 
-async function getData() {
- 
-  /*       let data = await fetch ("https://mind-hub.up.railway.app/amazing")*/
-        let data = await fetch ("https://mind-hub.up.railway.app/amazing")
-        data = await data.json()
-        let events = data.events
-        let date = data.date
-        console.log(date);
-        console.log(events);
-  
-        let eventsFiltered= filter(events, date)
-        eventsFiltered.forEach(printCards)
-  
-  
-  }
-  
-  getData()
+getData();
