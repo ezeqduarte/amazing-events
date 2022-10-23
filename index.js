@@ -1,13 +1,10 @@
-/*/ Eventos y fecha de information /*/
-const allEvents = data.events;
-const currentDate = data.currentDate;
-
-/*/ Containers para DOM /*/
+// Containers para DOM
 let container_cards = document.getElementById("container_cards");
 let container_checkboxs = document.getElementById("box_checksbox");
 let container_search = document.getElementById("search");
+let container_details = document.getElementById("container_card_details");
 
-/*/funcion para filtrar los eventos dependiendo de la pagina en la que este y de la current date /*/
+//funcion para filtrar los eventos dependiendo de la pagina en la que este y de la current date
 
 function filter(events, date) {
   let filteredEvents = events.filter((evento) => {
@@ -27,9 +24,7 @@ function filter(events, date) {
   return filteredEvents;
 }
 
-let eventosFiltrados = filter(allEvents, currentDate);
-
-/*/funcion para imprimir cartas de cada evento /*/
+//funcion para imprimir cartas de cada evento
 
 function printCards(event) {
   container_cards.innerHTML += `
@@ -65,11 +60,7 @@ function printCards(event) {
     `;
 }
 
-/* eventosFiltrados.forEach(printCards); */
-
-/*/ function para imprimir cards details /*/
-
-let container_details = document.getElementById("container_card_details");
+// function para imprimir cards details 
 
 function printCardDetails(evento) {
   container_details.innerHTML = `
@@ -92,7 +83,7 @@ function printCardDetails(evento) {
   `;
 } 
 
-// funcion que me crea un array con las categorias de los eventos
+// funcion que me imprime los checkbox
 
 function createCheckbox(category) {
   container_checkboxs.innerHTML += `
@@ -104,7 +95,8 @@ function createCheckbox(category) {
   `;
 }
 
-async function getData() {
+async function dataWithApi() {
+
   // capturo la api
   let data = await fetch("https://mind-hub.up.railway.app/amazing");
   //paso a json la data
@@ -116,9 +108,7 @@ async function getData() {
   //con mi funcion filter filtre los eventos de la api y por cada uno los imprimi
 
   let eventsFiltered = filter(events, date);
-  eventsFiltered.forEach(printCards);
-
-  console.log("-------------------------------------------------------------");
+  eventsFiltered.forEach(printCards); 
 
   //capturo todas las categorias de los arrays
 
@@ -131,31 +121,23 @@ async function getData() {
   ) {
     // imprimo todos los checkboxs
     categoriesEvents.forEach(createCheckbox);
-  }
-
-  console.log("-------------------------------------------------------------");
+  } 
 
   //capturo el id del evento y despues imprimo la card
 
   function getEventDetails() {
-    console.log(location);
-    console.log(location.search);
-    console.log(location.search.slice(8));
+   
     let id = location.search.slice(8);
-    console.log(id);
     let event = data.events.filter((event) => event.id === id);
     event = event[0]; 
     console.log(event);  
     printCardDetails(event);
+
   }
   
   if (document.title === "Details") {
     getEventDetails();
   }
-
-
-  console.log("-------------------------------------------------------------");
-
 
 
   //filtros cruzados
@@ -167,8 +149,6 @@ async function getData() {
 
     mixFilter();
   });
-
-  /*/ arranco a filtrar por checkbox /*/
 
   let categoriesChecked = [];
 
@@ -183,7 +163,7 @@ async function getData() {
     mixFilter();
   });
 
-  // funcion que me filtra los eventos
+  // funcion de filtro
 
   function mixFilter() {
     let eventsFilterForText = eventsFiltered.filter((evento) =>
@@ -215,4 +195,4 @@ async function getData() {
   }
 }
 
-getData();
+dataWithApi();
