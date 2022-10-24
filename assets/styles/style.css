@@ -429,6 +429,10 @@ td {
   border-bottom: 1px solid rgb(233, 40, 104);
 }
 
+.subtitle-table {
+  font-weight: 700;
+}
+
 /*/ details /*/
 
 .bold {
@@ -603,7 +607,7 @@ body::-webkit-scrollbar-thumb {
   }
 
   .card-img-details {
-    width: 100%;    
+    width: 800px;    
     border-radius: 85px;
     border-bottom-right-radius: 0px;
     border-top-left-radius: 0px;
@@ -663,6 +667,11 @@ body::-webkit-scrollbar-thumb {
   .foto_details {
     width: 1050px;   
   }    
+
+  .card-img-details {
+    width: 1000px;  
+    
+  }
 
 
 }

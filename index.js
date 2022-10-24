@@ -42,9 +42,8 @@ function printCards(event) {
           <p class="card-text m-0 datos-cards text-center">
               ${event.date.slice(0, 10)}
           </p>   
-          <p class="card-description flex-grow-1 d-flex justify-content-center align-items-center texto-cards">${
-            event.description
-          }</p>
+          <p class="card-description flex-grow-1 d-flex justify-content-center align-items-center texto-cards">${event.description
+    }</p>
           
           </div>  
       <div class="d-flex justify-content-between">
@@ -54,9 +53,8 @@ function printCards(event) {
             <span class="datos-datos-cards"> ${event.price}$</span>
           </p>
           </div>
-          <a href="details.html?evento=${
-            event.id
-          }" class="btn boton_cards btn-primary">More information</a>
+          <a href="details.html?evento=${event.id
+    }" class="btn boton_cards btn-primary">More information</a>
       </div>                  
     </div>
     
@@ -66,35 +64,34 @@ function printCards(event) {
 // function para imprimir cards details
 
 function printCardDetails(evento) {
+  let info
+  let price
+  if (evento.assistance) {    
+    info = `<h4 class="card-text">It has an attendance of <span class="bold"> ${evento.assistance} peoples out of ${evento.capacity} </span><span class="bold primario">.</span> </h4> `
+    price = `<h4 class="card-text">the price of this event was <span class="bold"> ${evento.price}$</span><span class="bold primario">.</span> </h4>`
+  } else {
+    info = `<h4 class="card-text">It has a capacity of <span class="bold"> ${evento.capacity} peoples</span><span class="bold primario">.</span> </h4> `
+    price = `<h4 class="card-text">The price of the event is <span class="bold"> ${evento.price}$</span><span class="bold primario">.</span> </h4>`
+  }
+
   container_details.innerHTML = `
+  
   <a href="javascript:history.back()"><img class="arrow_down_details mb-5" src="./assets/img/icons8-abajo.gif" alt="arrow_down"></a>
+ 
   <div class="card_details d-flex pb-5 py-4 flex-column flex-lg-column-reverse align-items-md-center flex-xl-row-reverse">
-    <div class="foto_details d-lg-flex justify-content-center"><img class="card-img-details" src="${
-      evento.image
-    }" alt=${evento.name}>
+    <div class="foto_details d-lg-flex justify-content-center">
+      <img class="card-img-details" src="${evento.image}" alt=${evento.name}>
     </div>
     <div class="card_body_details px-md-5 py-md-4 pb-lg-5 flex-grow-1 d-flex flex-column justify-content-evenly align-items-start">
-      <h2 class="card-title pt-4 text-center">${
-        evento.name
-      }<span class="primario">.</span></h2>
+      <h2 class="card-title pt-4 text-center">${evento.name}<span class="primario">.</span></h2>
       <h3 class="card-text p-4 p-sm-5 text-center">${evento.description}</h3>
       <div class="d-flex flex-column gap-3 px-3 justify-content-center">
-        <h4 class="card-text">The date of the event is <span class="bold"> ${evento.date.slice(
-          0,
-          10
-        )}</span><span class="bold primario">.</span> </h4>
-        <h4 class="card-text">This event belongs to the <span class="bold"> ${
-          evento.category
-        } category</span><span class="bold primario">.</span> </h4>
-        <h4 class="card-text">The event will take place in <span class="bold"> ${
-          evento.place
-        }</span><span class="bold primario">.</span> </h4>
-        <h4 class="card-text">It has a capacity of <span class="bold"> ${
-          evento.capacity
-        } peoples</span><span class="bold primario">.</span> </h4>      
-        <h4 class="card-text">The price of the event is <span class="bold"> ${
-          evento.price
-        }$</span><span class="bold primario">.</span> </h4>
+        <h4 class="card-text">The date of the event is <span class="bold"> ${evento.date.slice(0,10)}</span><span class="bold primario">.</span> </h4>
+        <h4 class="card-text">This event belongs to the <span class="bold"> ${evento.category} category</span><span class="bold primario">.</span> </h4>
+        <h4 class="card-text">The event will take place in <span class="bold"> ${evento.place}</span><span class="bold primario">.</span> </h4>
+        ${info}     
+        ${price}  
+        
       </div>
     </div>
   </div>  
@@ -196,12 +193,10 @@ async function dataWithApi() {
         }
       }
     }
-  } 
+  }
 }
 
- //capturo el id del evento y despues imprimo la card
-
-
+//capturo el id del evento y despues imprimo la card
 
 if (document.title === "Details") {
   async function getEventDetails() {
@@ -209,10 +204,10 @@ if (document.title === "Details") {
     //paso a json la data
     data = await data.json();
     // declaro events y date
-    let events = data.events;  
-  
+    let events = data.events;
+
     console.log(events);
-  
+
     let id = location.search.slice(8);
     let event = events.filter((event) => event.id === id);
     event = event[0];
@@ -235,63 +230,45 @@ async function stats() {
   data = await data.json();
 
   // declaro events y date
-  let events = data.events.map((e) => ({
-    name: e.name,
-    percentageAssistance: Math.round((e.assistance * 100) / e.capacity),
-    capacity: e.capacity,
-  }));
+  let date = data.date.slice(0,10)
+  let events = data.events
+  console.log(date);  
+  console.log(events);
 
- /*  console.log(events); */
-
-  let pastEvents = data.events.filter(e => e.assistance).map(e => ({
-    name: e.name,
-    percentageAssistance: Math.round((e.assistance * 100) / e.capacity),
-    revenues: e.assistance * e.price,
-  }))
-
-  console.log(pastEvents);
-
-  let upEvents = data.events.filter(e => !e.assistance).map(e => ({
-    name: e.name,
-    percentageAssistance: Math.round((e.assistance * 100) / e.capacity),
-    revenues: e.assistance * e.price,
-  }))
-
-  console.log(upEvents);
+  let newEvents = events.map(evento=> ({name: evento.name, percentageAssistance:((evento.assistance*100)/evento.capacity).toFixed(), capacity: evento.capacity}))  
   
+  console.log(newEvents);
 
-  function printTd(event1, event2, event3,contenedor) {  
-         
-        
-      
-  }
+  let eventHighAttendance = [...newEvents].sort((a,b)=> b.percentageAssistance-a.percentageAssistance)
+  eventHighAttendance = eventHighAttendance[0]
+  console.log(eventHighAttendance);
 
-  let highestPercentage = [...events].filter((e) => e.percentageAssistance).sort((a, b) => b.percentageAssistance - a.percentageAssistance).splice(0, 10).map((e) => ({
-      name: e.name,
-      percentageAssistance: e.percentageAssistance + "%",
-      capacity: e.capacity,
-    }));
+  let eventLowAttendance = [...newEvents].sort((a,b)=> a.percentageAssistance-b.percentageAssistance)
+  eventLowAttendance = eventLowAttendance[0]
+  console.log(eventLowAttendance);
 
-  console.log(highestPercentage);
+  let eventMostCapacity = [...newEvents].sort((a,b)=>b.capacity-a.capacity)
+  eventMostCapacity = eventMostCapacity[0]
+  console.log(eventMostCapacity);
 
-  let lowestPercentage = [...events]
-    .filter((e) => e.percentageAssistance)
-    .sort((a, b) => a.percentageAssistance - b.percentageAssistance)
-    .splice(0, 10)
-    .map((e) => ({
-      name: e.name,
-      percentageAssistance: e.percentageAssistance + "%",
-      capacity: e.capacity,
-    }));
+function printTable(container, object1, object2, object3) {
 
-  console.log(lowestPercentage);
+  container.innerHTML += `                    
+                <tr>
+                    <td class="text-center p-2 p-lg-4">${object1.name} has ${object1.percentageAssistance}% of assistance</td> 
+                    <td class="text-center p-2 p-lg-4">${object2.name} has ${object2.percentageAssistance}% of assistance</td>
+                    <td class="text-center p-2 p-lg-4">${object3.name} has capacity of ${object3.capacity} peoples</td>                   
+                </tr>                   
+  
+  `
 
-  let largerCapacity = [...events]
-    .filter((e) => e.capacity)
-    .sort((a, b) => b.capacity - a.capacity)
-    .splice(0, 10);
+}
 
-  console.log(largerCapacity);  
+printTable(table, eventHighAttendance, eventLowAttendance, eventMostCapacity)
+
+
+
+
 }
 
 if (document.title === "Stats") {
