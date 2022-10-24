@@ -547,6 +547,7 @@ body::-webkit-scrollbar-thumb {
 
   html {
     zoom: 80%;
+    scroll-behavior: smooth !important;
   }
 
   .intro_upcoming {

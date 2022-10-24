@@ -18,3 +18,4 @@ const typed = new Typed('.typed', {
 	cursorChar: '<span class="primario_cursor">|</span>', // Caracter para el cursor
 	contentType: 'html', // 'html' o 'null' para texto sin formato
 })
+
