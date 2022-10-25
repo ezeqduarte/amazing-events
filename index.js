@@ -225,8 +225,8 @@ if (
   dataWithApi();
 }
 
-async function stats() {
-  let data = await fetch("https://mind-hub.up.railway.app/amazing");
+async function table1() {
+  let data = await fetch("https://mh-amazing.herokuapp.com/amazing");
   data = await data.json();
 
   // declaro events y date
@@ -235,7 +235,7 @@ async function stats() {
   console.log(date);  
   console.log(events);
 
-  let newEvents = events.map(evento=> ({name: evento.name, percentageAssistance:((evento.assistance*100)/evento.capacity).toFixed(), capacity: evento.capacity}))  
+  let newEvents = events.map(evento=> ({name: evento.name, percentageAssistance:((evento.assistance*100)/evento.capacity).toFixed(2), capacity: evento.capacity}))  
   
   console.log(newEvents);
 
@@ -264,13 +264,80 @@ function printTable(container, object1, object2, object3) {
 
 }
 
-printTable(table, eventHighAttendance, eventLowAttendance, eventMostCapacity)
+  printTable(table, eventHighAttendance, eventLowAttendance, eventMostCapacity)
+}
 
+async function table3() {  
+    
+    let events = await fetch("https://mh-amazing.herokuapp.com/amazing?time=past");
+    events = await events.json();   
+    events = events.events  
+    events.map (evento=> {evento.revenues = evento.price * evento.assistance, evento.percentageAssistance = (evento.assistance * 100) / evento.capacity})   
+      
 
+    
 
+    let categories = [...new Set(events.map(evento=> evento.category))]
+    let categoriesOrdenadas = [...categories].sort()    
+   
+
+    let stats = categoriesOrdenadas.map(category=> {
+      let filtered = events.filter(event=> event.category===category)
+      return reduced(filtered)
+
+    }) 
+    
+    console.log(stats);
+   function reduced(array) {    
+     
+
+    let initial = {
+      name: "",
+      revenues: 0,
+      assistance: 0,
+      capacity: 0,      
+    }
+      
+    let stats = array.reduce((elemento1, elemento2)=> {    
+            
+      return {name: elemento2.category, revenues: elemento1.revenues+elemento2.revenues, assistance: elemento1.assistance+elemento2.assistance,  capacity: elemento1.capacity+elemento2.capacity}  
+            
+    }, initial)
+
+    stats.percentageAssistance = (( 100 * stats.assistance) / stats.capacity).toFixed(2)  
+    
+
+    return stats
+   }   
+
+   let table3 = document.getElementById("form-past")
+
+   let orderStats = [...stats].sort((a,b)=> b.name.toLowerCase - a.name.toLowerCase)
+
+   function printRow(array, id) {   
+        
+    for (const category of array) {
+
+      
+      id.innerHTML += `
+      
+      <tr>
+        <td class= "p-2">${category.name}</td>
+        <td class= "p-2">$ ${category.revenues}</td>
+        <td class= "p-2">${category.percentageAssistance} %</td>
+      </tr>
+      
+      `
+
+    } 
+
+   } 
+
+   printRow(orderStats, table3)
 
 }
 
 if (document.title === "Stats") {
-  stats();
+  table1();
+  table3()
 }
