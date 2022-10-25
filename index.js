@@ -112,7 +112,7 @@ function createCheckbox(category) {
 
 async function dataWithApi() {
   // capturo la api
-  let data = await fetch("https://mind-hub.up.railway.app/amazing");
+  let data = await fetch("https://mh-amazing.herokuapp.com/amazing");
 
   //paso a json la data
   data = await data.json();
@@ -200,19 +200,18 @@ async function dataWithApi() {
 
 if (document.title === "Details") {
   async function getEventDetails() {
-    let data = await fetch("https://mind-hub.up.railway.app/amazing");
+    let data = await fetch("https://mh-amazing.herokuapp.com/amazing");
     //paso a json la data
     data = await data.json();
     // declaro events y date
     let events = data.events;
+    
 
-    console.log(events);
-
-    let id = location.search.slice(8);
+    let id = location.search.slice(8);    
     let event = events.filter((event) => event.id === id);
-    event = event[0];
-    console.log(event);
+    event = event[0];    
     printCardDetails(event);
+
   }
   getEventDetails();
 }
@@ -267,6 +266,79 @@ function printTable(container, object1, object2, object3) {
   printTable(table, eventHighAttendance, eventLowAttendance, eventMostCapacity)
 }
 
+function printRow(array, id) {   
+        
+  for (const category of array) {
+
+    
+    id.innerHTML += `
+    
+    <tr>
+      <td class= "py-3">${category.name}</td>
+      <td class= "py-3">$ ${category.revenues}</td>
+      <td class= "py-3">${category.percentageAssistance} %</td>
+    </tr>
+    
+    `
+
+  } 
+
+ } 
+
+async function table2(){
+
+  let events = await fetch("https://mh-amazing.herokuapp.com/amazing?time=upcoming");
+  events = await events.json();   
+  events = events.events  
+
+  events.map (evento=> {evento.revenues = evento.price * evento.estimate, evento.percentageAssistance = (evento.estimate * 100) / evento.capacity})  
+  
+  console.log(events);
+
+  let categories = [...new Set(events.map(evento=> evento.category))]
+    let categoriesOrdenadas = [...categories].sort()    
+   
+
+    let stats = categoriesOrdenadas.map(category=> {
+      let filtered = events.filter(event=> event.category===category)
+      return reduced(filtered)
+
+    }) 
+    
+    console.log(stats);
+
+    function reduced(array) {    
+     
+
+      let initial = {
+        name: "",
+        revenues: 0,
+        estimate: 0,
+        capacity: 0,      
+      }
+        
+      let stats = array.reduce((elemento1, elemento2)=> {    
+              
+        return {name: elemento2.category, revenues: elemento1.revenues+elemento2.revenues, estimate: elemento1.estimate+elemento2.estimate,  capacity: elemento1.capacity+elemento2.capacity}  
+              
+      }, initial)
+  
+      stats.percentageAssistance = (( 100 * stats.estimate) / stats.capacity).toFixed(2)  
+      
+  
+      return stats
+     }   
+  
+     let table2 = document.getElementById("form-up")
+  
+     let orderStats = [...stats].sort((a,b)=> b.name.toLowerCase - a.name.toLowerCase)   
+  
+     printRow(orderStats, table2)
+    
+
+
+}
+
 async function table3() {  
     
     let events = await fetch("https://mh-amazing.herokuapp.com/amazing?time=past");
@@ -312,26 +384,7 @@ async function table3() {
 
    let table3 = document.getElementById("form-past")
 
-   let orderStats = [...stats].sort((a,b)=> b.name.toLowerCase - a.name.toLowerCase)
-
-   function printRow(array, id) {   
-        
-    for (const category of array) {
-
-      
-      id.innerHTML += `
-      
-      <tr>
-        <td class= "p-2">${category.name}</td>
-        <td class= "p-2">$ ${category.revenues}</td>
-        <td class= "p-2">${category.percentageAssistance} %</td>
-      </tr>
-      
-      `
-
-    } 
-
-   } 
+   let orderStats = [...stats].sort((a,b)=> b.name.toLowerCase - a.name.toLowerCase)   
 
    printRow(orderStats, table3)
 
@@ -339,5 +392,6 @@ async function table3() {
 
 if (document.title === "Stats") {
   table1();
-  table3()
+  table2();
+  table3();
 }
