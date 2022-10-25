@@ -69,9 +69,15 @@ function printCardDetails(evento) {
   if (evento.assistance) {    
     info = `<h4 class="card-text">It has an attendance of <span class="bold"> ${evento.assistance} peoples out of ${evento.capacity} </span><span class="bold primario">.</span> </h4> `
     price = `<h4 class="card-text">the price of this event was <span class="bold"> ${evento.price}$</span><span class="bold primario">.</span> </h4>`
+    place = `<h4 class="card-text">The event wast at <span class="bold"> ${evento.place}</span><span class="bold primario">.</span> </h4>`
+    date = `<h4 class="card-text">the date of the event was <span class="bold"> ${evento.date.slice(0,10)}</span><span class="bold primario">.</span> </h4>`
+    
   } else {
-    info = `<h4 class="card-text">It has a capacity of <span class="bold"> ${evento.capacity} peoples</span><span class="bold primario">.</span> </h4> `
+    info = `<h4 class="card-text">It has an estimate attendance of <span class="bold"> ${evento.estimate} peoples</span><span class="bold primario">.</span> </h4> `
     price = `<h4 class="card-text">The price of the event is <span class="bold"> ${evento.price}$</span><span class="bold primario">.</span> </h4>`
+    place = `<h4 class="card-text">The event will take place in <span class="bold"> ${evento.place}</span><span class="bold primario">.</span> </h4>`
+    date = `<h4 class="card-text">The date of the event is <span class="bold"> ${evento.date.slice(0,10)}</span><span class="bold primario">.</span> </h4>`   
+    
   }
 
   container_details.innerHTML = `
@@ -86,9 +92,9 @@ function printCardDetails(evento) {
       <h2 class="card-title pt-4 text-center">${evento.name}<span class="primario">.</span></h2>
       <h3 class="card-text p-4 p-sm-5 text-center">${evento.description}</h3>
       <div class="d-flex flex-column gap-3 px-3 justify-content-center">
-        <h4 class="card-text">The date of the event is <span class="bold"> ${evento.date.slice(0,10)}</span><span class="bold primario">.</span> </h4>
+        ${date}
         <h4 class="card-text">This event belongs to the <span class="bold"> ${evento.category} category</span><span class="bold primario">.</span> </h4>
-        <h4 class="card-text">The event will take place in <span class="bold"> ${evento.place}</span><span class="bold primario">.</span> </h4>
+        ${place}   
         ${info}     
         ${price}  
         
