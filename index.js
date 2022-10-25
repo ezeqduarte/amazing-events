@@ -247,33 +247,36 @@ async function table1() {
 
   try {
     let data = await fetch("https://mh-amazing.herokuapp.com/amazing");
-  data = await data.json();
+    data = await data.json();
 
   // declaro events y date
-  let date = data.date.slice(0,10)
-  let events = data.events
-  console.log(date);  
-  console.log(events);
+    let date = data.date.slice(0,10)
+    let events = data.events
+    console.log(date);  
+    console.log(events);
 
-  let newEvents = events.map(evento=> ({name: evento.name, percentageAssistance:((evento.assistance*100)/evento.capacity).toFixed(2), capacity: evento.capacity}))  
+    let newEvents = events.map(evento=> ({name: evento.name, percentageAssistance:((evento.assistance*100)/evento.capacity).toFixed(2), capacity: evento.capacity}))  
   
-  console.log(newEvents);
+    console.log(newEvents);
 
-  let eventHighAttendance = [...newEvents].sort((a,b)=> b.percentageAssistance-a.percentageAssistance)
-  eventHighAttendance = eventHighAttendance[0]
-  console.log(eventHighAttendance);
+    let eventHighAttendance = [...newEvents].sort((a,b)=> b.percentageAssistance-a.percentageAssistance)
+    eventHighAttendance = eventHighAttendance[0]
+    console.log(eventHighAttendance);
 
-  let eventLowAttendance = [...newEvents].sort((a,b)=> a.percentageAssistance-b.percentageAssistance)
-  eventLowAttendance = eventLowAttendance[0]
-  console.log(eventLowAttendance);
+    let eventLowAttendance = [...newEvents].sort((a,b)=> a.percentageAssistance-b.percentageAssistance)
+    eventLowAttendance = eventLowAttendance[0]
+    console.log(eventLowAttendance);
 
-  let eventMostCapacity = [...newEvents].sort((a,b)=>b.capacity-a.capacity)
-  eventMostCapacity = eventMostCapacity[0]
-  console.log(eventMostCapacity);
+    let eventMostCapacity = [...newEvents].sort((a,b)=>b.capacity-a.capacity)
+    eventMostCapacity = eventMostCapacity[0]
+    console.log(eventMostCapacity);
 
-  printTable(table, eventHighAttendance, eventLowAttendance, eventMostCapacity)
+    printTable(table, eventHighAttendance, eventLowAttendance, eventMostCapacity)
+
   } catch (error) {
+
     console.log(error);
+
   }
   
 }
@@ -306,19 +309,18 @@ async function table2(){
 
   events.map (evento=> {evento.revenues = evento.price * evento.estimate, evento.percentageAssistance = (evento.estimate * 100) / evento.capacity})  
   
-  console.log(events);
+  
 
   let categories = [...new Set(events.map(evento=> evento.category))]
     let categoriesOrdenadas = [...categories].sort()    
    
 
-    let stats = categoriesOrdenadas.map(category=> {
-      let filtered = events.filter(event=> event.category===category)
-      return reduced(filtered)
+    let dataEvents = categoriesOrdenadas.map(category=> {
+      let eventsFilteredForCategory = events.filter(event=> event.category===category)
+      return reduced(eventsFilteredForCategory)
 
-    }) 
+    })     
     
-    console.log(stats);
 
     function reduced(array) {    
      
@@ -330,23 +332,22 @@ async function table2(){
         capacity: 0,      
       }
         
-      let stats = array.reduce((elemento1, elemento2)=> {    
+      let dataEvent = array.reduce((elemento1, elemento2)=> {    
               
         return {name: elemento2.category, revenues: elemento1.revenues+elemento2.revenues, estimate: elemento1.estimate+elemento2.estimate,  capacity: elemento1.capacity+elemento2.capacity}  
               
       }, initial)
   
-      stats.percentageAssistance = (( 100 * stats.estimate) / stats.capacity).toFixed(2)  
+      dataEvent.percentageAssistance = (( 100 * dataEvent.estimate) / dataEvent.capacity).toFixed(2)  
       
   
-      return stats
+      return dataEvent
      }   
   
-     let table2 = document.getElementById("form-up")
+     let table2 = document.getElementById("form-up")        
   
-     let orderStats = [...stats].sort((a,b)=> b.name.toLowerCase - a.name.toLowerCase)   
-  
-     printRow(orderStats, table2)
+     printRow(dataEvents, table2)
+
   } catch (error) {
     console.log(error);
   } 
@@ -355,9 +356,13 @@ async function table2(){
 async function table3() {  
 
   try {
+
     let events = await fetch("https://mh-amazing.herokuapp.com/amazing?time=past");
+
     events = await events.json();   
+
     events = events.events  
+
     events.map (evento=> {evento.revenues = evento.price * evento.assistance, evento.percentageAssistance = (evento.assistance * 100) / evento.capacity})   
       
 
@@ -367,14 +372,13 @@ async function table3() {
     let categoriesOrdenadas = [...categories].sort()    
    
 
-    let stats = categoriesOrdenadas.map(category=> {
-      let filtered = events.filter(event=> event.category===category)
-      return reduced(filtered)
+    let dataEvents = categoriesOrdenadas.map(category=> {
+      let eventsFilteredForCategory = events.filter(event=> event.category===category)
+      return reduced(eventsFilteredForCategory)
 
-    }) 
+    })     
     
-    console.log(stats);
-   function reduced(array) {    
+    function reduced(array) {    
      
 
     let initial = {
@@ -384,23 +388,22 @@ async function table3() {
       capacity: 0,      
     }
       
-    let stats = array.reduce((elemento1, elemento2)=> {    
+    let dataEvent = array.reduce((elemento1, elemento2)=> {    
             
       return {name: elemento2.category, revenues: elemento1.revenues+elemento2.revenues, assistance: elemento1.assistance+elemento2.assistance,  capacity: elemento1.capacity+elemento2.capacity}  
             
     }, initial)
 
-    stats.percentageAssistance = (( 100 * stats.assistance) / stats.capacity).toFixed(2)  
+    dataEvent.percentageAssistance = (( 100 * dataEvent.assistance) / dataEvent.capacity).toFixed(2)  
     
 
-    return stats
+    return dataEvent
    }   
 
    let table3 = document.getElementById("form-past")
+     
 
-   let orderStats = [...stats].sort((a,b)=> b.name.toLowerCase - a.name.toLowerCase)   
-
-   printRow(orderStats, table3)
+   printRow(dataEvents, table3)
   } catch (error) {
     console.log(error);
   }    
