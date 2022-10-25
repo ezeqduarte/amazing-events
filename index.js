@@ -230,8 +230,23 @@ if (
   dataWithApi();
 }
 
+function printTable(container, object1, object2, object3) {
+
+  container.innerHTML += `                    
+                <tr>
+                    <td class="text-center p-2 p-lg-4">${object1.name} has ${object1.percentageAssistance}% of assistance</td> 
+                    <td class="text-center p-2 p-lg-4">${object2.name} has ${object2.percentageAssistance}% of assistance</td>
+                    <td class="text-center p-2 p-lg-4">${object3.name} has capacity of ${object3.capacity} peoples</td>                   
+                </tr>                   
+  
+  `
+
+}
+
 async function table1() {
-  let data = await fetch("https://mh-amazing.herokuapp.com/amazing");
+
+  try {
+    let data = await fetch("https://mh-amazing.herokuapp.com/amazing");
   data = await data.json();
 
   // declaro events y date
@@ -256,20 +271,11 @@ async function table1() {
   eventMostCapacity = eventMostCapacity[0]
   console.log(eventMostCapacity);
 
-function printTable(container, object1, object2, object3) {
-
-  container.innerHTML += `                    
-                <tr>
-                    <td class="text-center p-2 p-lg-4">${object1.name} has ${object1.percentageAssistance}% of assistance</td> 
-                    <td class="text-center p-2 p-lg-4">${object2.name} has ${object2.percentageAssistance}% of assistance</td>
-                    <td class="text-center p-2 p-lg-4">${object3.name} has capacity of ${object3.capacity} peoples</td>                   
-                </tr>                   
-  
-  `
-
-}
-
   printTable(table, eventHighAttendance, eventLowAttendance, eventMostCapacity)
+  } catch (error) {
+    console.log(error);
+  }
+  
 }
 
 function printRow(array, id) {   
@@ -293,7 +299,8 @@ function printRow(array, id) {
 
 async function table2(){
 
-  let events = await fetch("https://mh-amazing.herokuapp.com/amazing?time=upcoming");
+  try {
+    let events = await fetch("https://mh-amazing.herokuapp.com/amazing?time=upcoming");
   events = await events.json();   
   events = events.events  
 
@@ -340,13 +347,14 @@ async function table2(){
      let orderStats = [...stats].sort((a,b)=> b.name.toLowerCase - a.name.toLowerCase)   
   
      printRow(orderStats, table2)
-    
-
-
+  } catch (error) {
+    console.log(error);
+  } 
 }
 
 async function table3() {  
-    
+
+  try {
     let events = await fetch("https://mh-amazing.herokuapp.com/amazing?time=past");
     events = await events.json();   
     events = events.events  
@@ -393,6 +401,9 @@ async function table3() {
    let orderStats = [...stats].sort((a,b)=> b.name.toLowerCase - a.name.toLowerCase)   
 
    printRow(orderStats, table3)
+  } catch (error) {
+    console.log(error);
+  }    
 
 }
 
