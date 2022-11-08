@@ -28,6 +28,7 @@ function filter(events, date) {
 //funcion para imprimir cartas de cada evento
 
 function printCards(event) {
+  
   container_cards.innerHTML += `
     
     <div class="card card_events p-2">
@@ -132,6 +133,7 @@ async function dataWithApi() {
   //con mi funcion filter filtre los eventos de la api y por cada uno los imprimi
 
   let eventsFiltered = filter(events, date);
+  container_cards.innerHTML = ""
   eventsFiltered.forEach(printCards);
 
   //capturo todas las categorias de los arrays

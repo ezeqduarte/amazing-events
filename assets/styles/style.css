@@ -304,6 +304,9 @@ h2 {
 
 #container_cards {
   min-height: 690px;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 .form-check-input:checked {
