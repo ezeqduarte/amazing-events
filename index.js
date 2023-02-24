@@ -5,6 +5,8 @@ let container_search = document.getElementById("search");
 let container_details = document.getElementById("container_card_details");
 let table = document.getElementById("form");
 
+console.log(data.events);
+
 //funcion para filtrar los eventos dependiendo de la pagina en la que este y de la current date
 
 function filter(events, date) {
@@ -28,7 +30,6 @@ function filter(events, date) {
 //funcion para imprimir cartas de cada evento
 
 function printCards(event) {
-  
   container_cards.innerHTML += `
     
     <div class="card card_events p-2">
@@ -43,8 +44,9 @@ function printCards(event) {
           <p class="card-text m-0 datos-cards text-center">
               ${event.date.slice(0, 10)}
           </p>   
-          <p class="card-description flex-grow-1 d-flex justify-content-center align-items-center texto-cards">${event.description
-    }</p>
+          <p class="card-description flex-grow-1 d-flex justify-content-center align-items-center texto-cards">${
+            event.description
+          }</p>
           
           </div>  
       <div class="d-flex justify-content-between">
@@ -54,8 +56,9 @@ function printCards(event) {
             <span class="datos-datos-cards"> ${event.price}$</span>
           </p>
           </div>
-          <a href="details.html?evento=${event.id
-    }" class="btn boton_cards btn-primary">More information</a>
+          <a href="details.html?evento=${
+            event._id
+          }" class="btn boton_cards btn-primary">More information</a>
       </div>                  
     </div>
     
@@ -65,20 +68,24 @@ function printCards(event) {
 // function para imprimir cards details
 
 function printCardDetails(evento) {
-  let info
-  let price
-  if (evento.assistance) {    
-    info = `<h4 class="card-text">It has an attendance of <span class="bold"> ${evento.assistance} peoples out of ${evento.capacity} </span><span class="bold primario">.</span> </h4> `
-    price = `<h4 class="card-text">the price of this event was <span class="bold"> ${evento.price}$</span><span class="bold primario">.</span> </h4>`
-    place = `<h4 class="card-text">The event wast at <span class="bold"> ${evento.place}</span><span class="bold primario">.</span> </h4>`
-    date = `<h4 class="card-text">the date of the event was <span class="bold"> ${evento.date.slice(0,10)}</span><span class="bold primario">.</span> </h4>`
-    
+  let info;
+  let price;
+  if (evento.assistance) {
+    info = `<h4 class="card-text">It has an attendance of <span class="bold"> ${evento.assistance} peoples out of ${evento.capacity} </span><span class="bold primario">.</span> </h4> `;
+    price = `<h4 class="card-text">the price of this event was <span class="bold"> ${evento.price}$</span><span class="bold primario">.</span> </h4>`;
+    place = `<h4 class="card-text">The event wast at <span class="bold"> ${evento.place}</span><span class="bold primario">.</span> </h4>`;
+    date = `<h4 class="card-text">the date of the event was <span class="bold"> ${evento.date.slice(
+      0,
+      10
+    )}</span><span class="bold primario">.</span> </h4>`;
   } else {
-    info = `<h4 class="card-text">It has an estimate attendance of <span class="bold"> ${evento.estimate} peoples</span><span class="bold primario">.</span> </h4> `
-    price = `<h4 class="card-text">The price of the event is <span class="bold"> ${evento.price}$</span><span class="bold primario">.</span> </h4>`
-    place = `<h4 class="card-text">The event will take place in <span class="bold"> ${evento.place}</span><span class="bold primario">.</span> </h4>`
-    date = `<h4 class="card-text">The date of the event is <span class="bold"> ${evento.date.slice(0,10)}</span><span class="bold primario">.</span> </h4>`   
-    
+    info = `<h4 class="card-text">It has an estimate attendance of <span class="bold"> ${evento.estimate} peoples</span><span class="bold primario">.</span> </h4> `;
+    price = `<h4 class="card-text">The price of the event is <span class="bold"> ${evento.price}$</span><span class="bold primario">.</span> </h4>`;
+    place = `<h4 class="card-text">The event will take place in <span class="bold"> ${evento.place}</span><span class="bold primario">.</span> </h4>`;
+    date = `<h4 class="card-text">The date of the event is <span class="bold"> ${evento.date.slice(
+      0,
+      10
+    )}</span><span class="bold primario">.</span> </h4>`;
   }
 
   container_details.innerHTML = `
@@ -119,21 +126,15 @@ function createCheckbox(category) {
 
 async function dataWithApi() {
   // capturo la api
-  let data = await fetch("https://mh-amazing.herokuapp.com/amazing");
-
-  //paso a json la data
-  data = await data.json();
 
   // declaro events y date
   let events = data.events;
-  let date = data.date;
-
-  console.log(events);
+  let date = data.currentDate;
 
   //con mi funcion filter filtre los eventos de la api y por cada uno los imprimi
 
   let eventsFiltered = filter(events, date);
-  container_cards.innerHTML = ""
+  container_cards.innerHTML = "";
   eventsFiltered.forEach(printCards);
 
   //capturo todas las categorias de los arrays
@@ -208,18 +209,12 @@ async function dataWithApi() {
 
 if (document.title === "Details") {
   async function getEventDetails() {
-    let data = await fetch("https://mh-amazing.herokuapp.com/amazing");
-    //paso a json la data
-    data = await data.json();
-    // declaro events y date
     let events = data.events;
-    
-
-    let id = location.search.slice(8);    
-    let event = events.filter((event) => event.id === id);
-    event = event[0];    
+    let id = location.search.slice(8);
+    console.log(id);
+    let event = events.filter((event) => event._id === id);
+    event = event[0];
     printCardDetails(event);
-
   }
   getEventDetails();
 }
@@ -233,7 +228,6 @@ if (
 }
 
 function printTable(container, object1, object2, object3) {
-
   container.innerHTML += `                    
                 <tr>
                     <td class="text-center p-2 p-lg-4">${object1.name} has ${object1.percentageAssistance}% of assistance</td> 
@@ -241,53 +235,58 @@ function printTable(container, object1, object2, object3) {
                     <td class="text-center p-2 p-lg-4">${object3.name} has capacity of ${object3.capacity} peoples</td>                   
                 </tr>                   
   
-  `
-
+  `;
 }
 
 async function table1() {
-
   try {
-    let data = await fetch("https://mh-amazing.herokuapp.com/amazing");
-    data = await data.json();
-
-  // declaro events y date
-    let date = data.date.slice(0,10)
-    let events = data.events
-    console.log(date);  
+    let events = data.events;
+    let date = data.currentDate;
+    console.log(date);
     console.log(events);
 
-    let newEvents = events.map(evento=> ({name: evento.name, percentageAssistance:((evento.assistance*100)/evento.capacity).toFixed(2), capacity: evento.capacity}))  
-  
+    let newEvents = events.map((evento) => ({
+      name: evento.name,
+      percentageAssistance: (
+        (evento.assistance * 100) /
+        evento.capacity
+      ).toFixed(2),
+      capacity: evento.capacity,
+    }));
+
     console.log(newEvents);
 
-    let eventHighAttendance = [...newEvents].sort((a,b)=> b.percentageAssistance-a.percentageAssistance)
-    eventHighAttendance = eventHighAttendance[0]
+    let eventHighAttendance = [...newEvents].sort(
+      (a, b) => b.percentageAssistance - a.percentageAssistance
+    );
+    eventHighAttendance = eventHighAttendance[0];
     console.log(eventHighAttendance);
 
-    let eventLowAttendance = [...newEvents].sort((a,b)=> a.percentageAssistance-b.percentageAssistance)
-    eventLowAttendance = eventLowAttendance[0]
+    let eventLowAttendance = [...newEvents].sort(
+      (a, b) => a.percentageAssistance - b.percentageAssistance
+    );
+    eventLowAttendance = eventLowAttendance[0];
     console.log(eventLowAttendance);
 
-    let eventMostCapacity = [...newEvents].sort((a,b)=>b.capacity-a.capacity)
-    eventMostCapacity = eventMostCapacity[0]
+    let eventMostCapacity = [...newEvents].sort(
+      (a, b) => b.capacity - a.capacity
+    );
+    eventMostCapacity = eventMostCapacity[0];
     console.log(eventMostCapacity);
 
-    printTable(table, eventHighAttendance, eventLowAttendance, eventMostCapacity)
-
+    printTable(
+      table,
+      eventHighAttendance,
+      eventLowAttendance,
+      eventMostCapacity
+    );
   } catch (error) {
-
     console.log(error);
-
   }
-  
 }
 
-function printRow(array, id) {   
-        
+function printRow(array, id) {
   for (const category of array) {
-
-    
     id.innerHTML += `
     
     <tr>
@@ -296,120 +295,114 @@ function printRow(array, id) {
       <td class= "py-3">${category.percentageAssistance} %</td>
     </tr>
     
-    `
+    `;
+  }
+}
 
-  } 
-
- } 
-
-async function table2(){
-
+async function table2() {
   try {
-    let events = await fetch("https://mh-amazing.herokuapp.com/amazing?time=upcoming");
-  events = await events.json();   
-  events = events.events  
+    let events = data.events;
 
-  events.map (evento=> {evento.revenues = evento.price * evento.estimate, evento.percentageAssistance = (evento.estimate * 100) / evento.capacity})  
-  
-  
+    events.map((evento) => {
+      (evento.revenues = evento.price * evento.estimate),
+        (evento.percentageAssistance =
+          (evento.estimate * 100) / evento.capacity);
+    });
 
-  let categories = [...new Set(events.map(evento=> evento.category))]
-    let categoriesOrdenadas = [...categories].sort()    
-   
+    let categories = [...new Set(events.map((evento) => evento.category))];
+    let categoriesOrdenadas = [...categories].sort();
 
-    let dataEvents = categoriesOrdenadas.map(category=> {
-      let eventsFilteredForCategory = events.filter(event=> event.category===category)
-      return reduced(eventsFilteredForCategory)
+    let dataEvents = categoriesOrdenadas.map((category) => {
+      let eventsFilteredForCategory = events.filter(
+        (event) => event.category === category
+      );
+      return reduced(eventsFilteredForCategory);
+    });
 
-    })     
-    
-
-    function reduced(array) {    
-     
-
+    function reduced(array) {
       let initial = {
         name: "",
         revenues: 0,
         estimate: 0,
-        capacity: 0,      
-      }
-        
-      let dataEvent = array.reduce((elemento1, elemento2)=> {    
-              
-        return {name: elemento2.category, revenues: elemento1.revenues+elemento2.revenues, estimate: elemento1.estimate+elemento2.estimate,  capacity: elemento1.capacity+elemento2.capacity}  
-              
-      }, initial)
-  
-      dataEvent.percentageAssistance = (( 100 * dataEvent.estimate) / dataEvent.capacity).toFixed(2)  
-      
-  
-      return dataEvent
-     }   
-  
-     let table2 = document.getElementById("form-up")        
-  
-     printRow(dataEvents, table2)
+        capacity: 0,
+      };
 
+      let dataEvent = array.reduce((elemento1, elemento2) => {
+        return {
+          name: elemento2.category,
+          revenues: elemento1.revenues + elemento2.revenues,
+          estimate: elemento1.estimate + elemento2.estimate,
+          capacity: elemento1.capacity + elemento2.capacity,
+        };
+      }, initial);
+
+      dataEvent.percentageAssistance = (
+        (100 * dataEvent.estimate) /
+        dataEvent.capacity
+      ).toFixed(2);
+
+      return dataEvent;
+    }
+
+    let table2 = document.getElementById("form-up");
+
+    printRow(dataEvents, table2);
   } catch (error) {
     console.log(error);
-  } 
+  }
 }
 
-async function table3() {  
-
+async function table3() {
   try {
+    let events = data.events;
 
-    let events = await fetch("https://mh-amazing.herokuapp.com/amazing?time=past");
+    events.map((evento) => {
+      (evento.revenues = evento.price * evento.assistance),
+        (evento.percentageAssistance =
+          (evento.assistance * 100) / evento.capacity);
+    });
 
-    events = await events.json();   
+    let categories = [...new Set(events.map((evento) => evento.category))];
+    let categoriesOrdenadas = [...categories].sort();
 
-    events = events.events  
+    let dataEvents = categoriesOrdenadas.map((category) => {
+      let eventsFilteredForCategory = events.filter(
+        (event) => event.category === category
+      );
+      return reduced(eventsFilteredForCategory);
+    });
 
-    events.map (evento=> {evento.revenues = evento.price * evento.assistance, evento.percentageAssistance = (evento.assistance * 100) / evento.capacity})   
-      
+    function reduced(array) {
+      let initial = {
+        name: "",
+        revenues: 0,
+        assistance: 0,
+        capacity: 0,
+      };
 
-    
+      let dataEvent = array.reduce((elemento1, elemento2) => {
+        return {
+          name: elemento2.category,
+          revenues: elemento1.revenues + elemento2.revenues,
+          assistance: elemento1.assistance + elemento2.assistance,
+          capacity: elemento1.capacity + elemento2.capacity,
+        };
+      }, initial);
 
-    let categories = [...new Set(events.map(evento=> evento.category))]
-    let categoriesOrdenadas = [...categories].sort()    
-   
+      dataEvent.percentageAssistance = (
+        (100 * dataEvent.assistance) /
+        dataEvent.capacity
+      ).toFixed(2);
 
-    let dataEvents = categoriesOrdenadas.map(category=> {
-      let eventsFilteredForCategory = events.filter(event=> event.category===category)
-      return reduced(eventsFilteredForCategory)
-
-    })     
-    
-    function reduced(array) {    
-     
-
-    let initial = {
-      name: "",
-      revenues: 0,
-      assistance: 0,
-      capacity: 0,      
+      return dataEvent;
     }
-      
-    let dataEvent = array.reduce((elemento1, elemento2)=> {    
-            
-      return {name: elemento2.category, revenues: elemento1.revenues+elemento2.revenues, assistance: elemento1.assistance+elemento2.assistance,  capacity: elemento1.capacity+elemento2.capacity}  
-            
-    }, initial)
 
-    dataEvent.percentageAssistance = (( 100 * dataEvent.assistance) / dataEvent.capacity).toFixed(2)  
-    
+    let table3 = document.getElementById("form-past");
 
-    return dataEvent
-   }   
-
-   let table3 = document.getElementById("form-past")
-     
-
-   printRow(dataEvents, table3)
+    printRow(dataEvents, table3);
   } catch (error) {
     console.log(error);
-  }    
-
+  }
 }
 
 if (document.title === "Stats") {
