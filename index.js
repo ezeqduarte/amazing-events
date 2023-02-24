@@ -211,8 +211,7 @@ if (document.title === "Details") {
   async function getEventDetails() {
     let events = data.events;
     let id = location.search.slice(8);
-    console.log(id);
-    let event = events.filter((event) => event._id === id);
+    let event = events.filter((event) => event._id == id);
     event = event[0];
     printCardDetails(event);
   }
